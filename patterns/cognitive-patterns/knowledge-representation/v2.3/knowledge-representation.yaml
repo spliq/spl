@@ -1,0 +1,261 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Cognitive Pattern: Knowledge Representation v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: "2.3"
+schema: spl.meta-pattern.v2.3
+id: "cognitive-pattern/knowledge-representation:v2.3"
+kind: "cognitive-pattern"
+
+info:
+  title: "Knowledge Representation Pattern"
+  description: "Cognitive pattern for organizing, structuring, and accessing knowledge in meaningful ways"
+  purpose: "Enables patterns to represent knowledge in forms that support reasoning, learning, and intelligent behavior"
+  status: "stable"
+  category: "cognitive"
+  layer: "L1C"
+
+contract:
+  goal: "Provide framework for representing knowledge in structured, accessible, and reasoning-compatible formats"
+  
+  inputs:
+    - name: "raw_information"
+      type: "object"
+      description: "Unstructured or semi-structured information to represent"
+      required: true
+    
+    - name: "representation_schema"
+      type: "object"
+      description: "Schema defining how knowledge should be structured"
+      required: true
+      schema:
+        ontology: "conceptual framework and taxonomy"
+        relationships: "types of relationships between concepts"
+        constraints: "rules governing knowledge structure"
+    
+    - name: "context"
+      type: "object"
+      description: "Contextual information affecting representation"
+      required: false
+  
+  outputs:
+    - name: "knowledge_structure"
+      type: "object"
+      description: "Structured representation of knowledge"
+      schema:
+        concepts: "array of knowledge concepts/entities"
+        relationships: "array of relationships between concepts"
+        hierarchy: "taxonomic or ontological structure"
+        metadata: "provenance, confidence, timestamps"
+    
+    - name: "inference_paths"
+      type: "array"
+      description: "Possible reasoning paths through knowledge structure"
+    
+    - name: "knowledge_gaps"
+      type: "array"
+      description: "Identified gaps or inconsistencies in knowledge"
+  
+  return_format: |
+    {
+      "knowledge_structure": {
+        "concepts": [
+          {
+            "id": "concept_1",
+            "type": "entity",
+            "properties": {...},
+            "relationships": [
+              {"type": "is_a", "target": "concept_2"},
+              {"type": "causes", "target": "concept_3"}
+            ]
+          }
+        ],
+        "hierarchy": {
+          "root": "domain_concept",
+          "children": [...]
+        },
+        "metadata": {
+          "source": "...",
+          "confidence": 0.95,
+          "last_updated": "..."
+        }
+      },
+      "inference_paths": [
+        {"path": ["A", "causes", "B", "enables", "C"], "confidence": 0.8}
+      ],
+      "knowledge_gaps": [
+        {"type": "missing_relationship", "between": ["A", "D"]}
+      ]
+    }
+  
+  warnings:
+    - "Knowledge representation affects reasoning capabilities"
+    - "Inconsistencies in knowledge can lead to incorrect inferences"
+    - "Different domains require different representation schemas"
+    - "Knowledge should be versioned and provenance-tracked"
+  
+  context:
+    - "Ontology engineering and knowledge graphs"
+    - "Semantic networks and conceptual graphs"
+    - "Frame-based and logic-based representations"
+    - "Description logics and formal semantics"
+
+execution:
+  steps:
+    - step: "parse_information"
+      description: "Extract concepts and relationships from raw information"
+      substeps:
+        - "Identify key concepts and entities"
+        - "Extract relationships and properties"
+        - "Resolve ambiguities and references"
+    
+    - step: "structure_knowledge"
+      description: "Organize knowledge according to schema"
+      substeps:
+        - "Map concepts to ontology classes"
+        - "Establish relationships per schema"
+        - "Build hierarchical structure"
+        - "Add metadata and provenance"
+    
+    - step: "validate_consistency"
+      description: "Check for logical consistency and completeness"
+      substeps:
+        - "Verify ontological constraints"
+        - "Check for contradictions"
+        - "Identify missing information"
+    
+    - step: "enable_inference"
+      description: "Prepare knowledge for reasoning"
+      substeps:
+        - "Identify inference paths"
+        - "Compute transitive closures"
+        - "Enable query mechanisms"
+    
+    - step: "detect_gaps"
+      description: "Identify knowledge gaps and inconsistencies"
+      substeps:
+        - "Find incomplete concept definitions"
+        - "Detect missing relationships"
+        - "Flag contradictory information"
+  
+  loop:
+    type: "knowledge-refinement"
+    description: "Iteratively refine knowledge representation"
+    convergence_criteria:
+      - "No new inconsistencies detected"
+      - "Knowledge coverage meets threshold"
+      - "Inference paths are complete"
+    max_iterations: 10
+  
+  inspect:
+    - metric: "consistency_score"
+      description: "Logical consistency of knowledge structure"
+      threshold: "> 95%"
+    
+    - metric: "coverage_completeness"
+      description: "Percentage of domain covered"
+      threshold: "> 80%"
+    
+    - metric: "relationship_density"
+      description: "Richness of concept interconnections"
+      threshold: "> 0.3"
+
+guarantees:
+  success_criteria:
+    - "Knowledge is logically consistent"
+    - "All concepts properly classified in ontology"
+    - "Relationships conform to schema constraints"
+    - "Provenance tracked for all knowledge"
+  
+  safety_requirements:
+    - "Knowledge contradictions are flagged and resolved"
+    - "Source credibility is tracked and used in confidence"
+    - "Knowledge updates maintain consistency"
+    - "Inference paths are explainable"
+  
+  human_oversight:
+    - trigger: "high_inconsistency"
+      condition: "consistency_score < 80%"
+      action: "request human knowledge engineer review"
+    
+    - trigger: "novel_concept"
+      condition: "concept not in ontology"
+      action: "consult domain expert for classification"
+    
+    - trigger: "contradictory_sources"
+      condition: "multiple conflicting sources"
+      action: "escalate to human for source arbitration"
+  
+  compliance:
+    - "Respect knowledge licensing and attribution"
+    - "Maintain provenance and citation chains"
+    - "Enable knowledge auditability"
+    - "Support knowledge versioning"
+  
+  performance:
+    response_time: "< 5 seconds for knowledge structuring"
+    scalability: "Handle knowledge graphs with 100K+ concepts"
+
+relations:
+  inherits_from: "meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules:
+      - "Knowledge representation composes with expectation for predictive models"
+      - "May use experience-acquisition for learning new knowledge"
+      - "May use validator for knowledge consistency checking"
+      - "May use translator for knowledge format conversion"
+  implements: ''
+  uses:
+    - local: "cognitive-pattern/expectation:v2.3"
+      purpose: "predictive knowledge modeling"
+    - local: "cognitive-pattern/experience-acquisition:v2.3"
+      purpose: "knowledge learning and update"
+    - local: "critical-pattern/validator:v2.3"
+      purpose: "knowledge consistency validation"
+    - local: "critical-pattern/translator:v2.3"
+      purpose: "knowledge format translation"
+
+typical_applications:
+  - "Knowledge management systems"
+  - "Expert systems and reasoning engines"
+  - "Semantic search and question answering"
+  - "Intelligent tutoring systems"
+
+examples:
+  - name: "Medical knowledge graph"
+    description: "Represent relationships between diseases, symptoms, treatments"
+    schema:
+      ontology:
+        - "Disease"
+        - "Symptom"
+        - "Treatment"
+        - "Drug"
+      relationships:
+        - "has_symptom"
+        - "treated_by"
+        - "contraindicated_with"
+    
+  - name: "Manufacturing process knowledge"
+    description: "Represent production workflows and dependencies"
+    schema:
+      ontology:
+        - "Process"
+        - "Resource"
+        - "Product"
+        - "Constraint"
+      relationships:
+        - "requires"
+        - "produces"
+        - "precedes"
+
+metadata:
+  cognitive_type: "representational"
+  cognitive_domain: "knowledge_organization"
+  complexity: "high"
+  requires_domain_ontology: true
+  supports_reasoning: true

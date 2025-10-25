@@ -1,0 +1,189 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Uncertainty Handler v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: "template/uncertainty-handler:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Uncertainty Handler (Core)"
+  description: "Core pattern for handling probabilistic, stochastic, and uncertain systems where outcomes are non-deterministic"
+  owners: ["spl-core"]
+  tags: ["uncertainty", "probabilistic", "stochastic", "quantum", "core", "critical-pattern"]
+
+contract:
+  goal: "Manage and reason about systems with inherent uncertainty, probabilistic outcomes, or quantum behaviors"
+  return_format: "Probability distributions, confidence intervals, and uncertainty quantification"
+  warnings:
+    - "Cannot guarantee deterministic outcomes"
+    - "Must quantify uncertainty explicitly"
+    - "Observation may affect system state (Heisenberg-like effects)"
+    - "Validation requires statistical methods"
+  context:
+    - "Layer 1 core uncertainty pattern"
+    - "Reality-agnostic pattern"
+    - "Foundation for quantum computing, ML inference, stochastic processes"
+    - "Extends traditional deterministic patterns with probability"
+  inputs:
+    - name: uncertain_system
+      type: object
+      required: true
+      description: "System with uncertainty to be handled"
+      schema:
+        system_type: enum ["quantum", "stochastic", "probabilistic", "chaotic"]
+        uncertainty_source: string
+        observable_variables: array
+        measurement_protocol: object
+    
+    - name: confidence_requirements
+      type: object
+      required: true
+      description: "Required confidence levels and error bounds"
+      schema:
+        confidence_level: number  # e.g., 0.95 for 95%
+        error_tolerance: number
+        sample_size: integer
+  
+  outputs:
+    - name: uncertainty_estimate
+      type: object
+      required: true
+      description: "Quantified uncertainty with probability distributions"
+      schema:
+        mean_estimate: any
+        probability_distribution: object
+        confidence_interval: object
+        uncertainty_metrics: object
+  
+  parameters:
+    - name: measurement_strategy
+      type: enum
+      options: [repeated_sampling, ensemble_methods, bayesian_inference, quantum_measurement]
+      description: "Strategy for quantifying uncertainty"
+      default: "repeated_sampling"
+    
+    - name: probabilistic_mode
+      type: boolean
+      description: "Enable full probabilistic computation"
+      default: true
+
+identity:
+  domain: "spl.core"
+  taxonomy: ["pattern", "uncertainty", "probabilistic"]
+  x-reality: ""  # Reality-agnostic (Layer 1)
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules:
+      - "Uncertainty handlers compose with other patterns to add probabilistic behavior"
+      - "Can wrap generators, validators, resolvers with uncertainty quantification"
+  uses: []
+
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints:
+    - "Use when deterministic outcomes are impossible"
+    - "Requires statistical validation methods"
+    - "May need large sample sizes for confidence"
+
+execution:
+  steps:
+    - "Identify sources of uncertainty in system"
+    - "Define measurement protocol and sampling strategy"
+    - "Collect observations according to protocol"
+    - "Compute probability distributions"
+    - "Calculate confidence intervals"
+    - "Quantify and report uncertainty metrics"
+    - "Validate statistical significance"
+
+guarantees:
+  success_criteria:
+    - "Uncertainty is explicitly quantified"
+    - "Confidence intervals meet requirements"
+    - "Statistical significance validated"
+    - "Measurement protocol is reproducible"
+  metrics:
+    - name: "confidence_level"
+      description: "Statistical confidence in estimates"
+      type: "percentage"
+    - name: "uncertainty_magnitude"
+      description: "Size of confidence intervals"
+      type: "quantitative"
+    - name: "convergence_rate"
+      description: "How quickly estimates converge with more samples"
+      type: "quantitative"
+  rubric:
+    pass:
+      - "Uncertainty quantified within error tolerance"
+      - "Confidence requirements met"
+      - "Measurement protocol valid"
+      - "Statistical tests pass"
+    fail:
+      - "Uncertainty too large for requirements"
+      - "Insufficient samples"
+      - "Invalid measurement protocol"
+      - "Failed statistical tests"
+  validation_hooks:
+    pre_validation:
+      - "validate_measurement_protocol"
+      - "validate_sample_size"
+    post_validation:
+      - "validate_statistical_significance"
+      - "validate_confidence_intervals"
+      - "validate_distribution_assumptions"
+
+content-specifications:
+  sections:
+    - title: "Uncertainty Sources"
+      required: true
+      content: "Identification and characterization of uncertainty sources"
+    
+    - title: "Measurement Protocol"
+      required: true
+      content: "How observations are collected and processed"
+    
+    - title: "Probability Distributions"
+      required: true
+      content: "Statistical models of uncertain quantities"
+    
+    - title: "Confidence Intervals"
+      required: true
+      content: "Ranges of plausible values with confidence levels"
+    
+    - title: "Uncertainty Propagation"
+      required: false
+      content: "How uncertainty flows through computations"
+    
+    - title: "Validation Methods"
+      required: true
+      content: "Statistical tests and validation procedures"
+
+extension_points:
+  layer: true      # Can be extended for different layers
+  pattern: true    # Can be specialized for specific uncertainty types
+  reality: true    # Can be specialized for different realities
+  quantum: true    # Special extension for quantum systems
+
+inheritance:
+  invariants:
+    probabilistic: "All outcomes must be expressed probabilistically"
+    uncertainty_quantification: "Uncertainty must be explicitly quantified"
+    reproducibility: "Measurement protocol must be reproducible"
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields: ["probabilistic", "uncertainty_quantification"]
+    specialization-rules:
+      - "L2 templates add reality-specific uncertainty sources"
+      - "L3 templates add technology-specific measurement protocols"
+      - "L4 products define specific probabilistic systems"
+      - "L5 solutions implement uncertainty quantification algorithms"

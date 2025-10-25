@@ -1,0 +1,73 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Monitor v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: "2.3"
+schema: spl.meta-pattern.v2.3
+id: "template/monitor:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Monitor (Core)"
+  description: "Core reality-agnostic monitor pattern for observing signals and emitting events"
+  owners: ["spl-core"]
+  tags: ["monitor", "observability", "signals", "critical-pattern"]
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules: []
+
+contract:
+  goal: "Continuously observe system state and emit structured signals and alerts"
+  return_format: "structured events: signal(type, value, ts), alert(level, message, evidence)"
+  warnings:
+    - "Must not modify observed systems"
+    - "Sampling strategies must be explicit"
+  context:
+    - "Layer 1 core monitor template - reality agnostic; specialize at L2+"
+  inputs:
+    - name: targets
+      type: array
+      description: "What to observe (endpoints, components, sensors)"
+    - name: sampling
+      type: object
+      description: "Interval, triggers, thresholds"
+  outputs:
+    - name: signals
+      type: stream
+      description: "Structured signal emissions"
+    - name: alerts
+      type: stream
+      description: "Structured alerts with evidence"
+
+execution:
+  steps:
+    - discover_targets
+    - read_signals
+    - evaluate_thresholds
+    - emit_events
+  monitors:
+    - backpressure
+    - dropped_events
+
+guarantees:
+  success_criteria:
+    - "No mutation of targets"
+    - "Signal loss rate below threshold"
+  metrics:
+    - "signals_per_second"
+    - "alerts_per_hour"
+    - "loss_rate"
+  compliance: {}
+
+extension_points:
+  layer: true
+  pattern: true
+  reality: true

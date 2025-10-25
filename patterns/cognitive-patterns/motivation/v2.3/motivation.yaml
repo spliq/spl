@@ -1,0 +1,261 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Cognitive Pattern: Motivation v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: "2.3"
+schema: spl.meta-pattern.v2.3
+id: "cognitive-pattern/motivation:v2.3"
+kind: "cognitive-pattern"
+
+info:
+  title: "Motivation Pattern"
+  description: "Cognitive pattern for goal pursuit, drive systems, and action selection based on internal states"
+  purpose: "Enables patterns to exhibit goal-directed behavior, prioritize actions, and persist toward objectives"
+  status: "stable"
+  category: "cognitive"
+  layer: "L1C"
+
+contract:
+  goal: "Provide framework for goal-directed behavior, action selection, and persistence"
+  
+  inputs:
+    - name: "current_state"
+      type: "object"
+      description: "Current situation and internal state"
+      required: true
+      schema:
+        environment: "external situation"
+        internal_state: "needs, progress, resources"
+    
+    - name: "goals"
+      type: "array"
+      description: "Active goals and their properties"
+      required: true
+      schema:
+        - goal_id: "unique identifier"
+          description: "what to achieve"
+          priority: "importance (0.0-1.0)"
+          progress: "completion (0.0-1.0)"
+          deadline: "time constraint"
+    
+    - name: "possible_actions"
+      type: "array"
+      description: "Available actions in current state"
+      required: true
+    
+    - name: "motivation_factors"
+      type: "object"
+      description: "Factors affecting motivation"
+      required: false
+      schema:
+        intrinsic: "internal satisfaction from action"
+        extrinsic: "external rewards"
+        social: "social factors (approval, collaboration)"
+  
+  outputs:
+    - name: "selected_action"
+      type: "object"
+      description: "Chosen action based on motivational analysis"
+      schema:
+        action: "what to do"
+        rationale: "why this action was chosen"
+        expected_utility: "predicted value"
+    
+    - name: "motivation_state"
+      type: "object"
+      description: "Current motivational state"
+      schema:
+        drive_levels: "intensity for each goal"
+        urgency: "time-based pressure"
+        persistence: "willingness to continue despite obstacles"
+    
+    - name: "goal_updates"
+      type: "array"
+      description: "Changes to goals (new, modified, abandoned)"
+  
+  return_format: |
+    {
+      "selected_action": {
+        "action": "work_on_goal_X",
+        "rationale": "highest priority, near deadline, high progress",
+        "expected_utility": 0.87
+      },
+      "motivation_state": {
+        "drive_levels": {
+          "goal_A": 0.9,
+          "goal_B": 0.6
+        },
+        "urgency": 0.8,
+        "persistence": 0.75
+      },
+      "goal_updates": [
+        {"goal_id": "G1", "status": "completed"},
+        {"goal_id": "G2", "priority": 0.95}  # Increased
+      ]
+    }
+  
+  warnings:
+    - "Unbalanced goals can lead to neglect of important objectives"
+    - "Overemphasis on extrinsic rewards may undermine intrinsic motivation"
+    - "Deadline pressure without persistence recovery leads to burnout"
+    - "Goal conflicts require human resolution in critical domains"
+  
+  context:
+    - "Motivational psychology and drive theory"
+    - "Goal-setting theory and achievement motivation"
+    - "Self-determination theory (intrinsic/extrinsic motivation)"
+    - "Behavioral economics and decision theory"
+
+execution:
+  steps:
+    - step: "assess_current_state"
+      description: "Evaluate current situation and needs"
+      substeps:
+        - "Identify active goals and their states"
+        - "Assess resource availability"
+        - "Evaluate progress toward goals"
+        - "Detect obstacles or opportunities"
+    
+    - step: "calculate_goal_utility"
+      description: "Determine value of pursuing each goal"
+      substeps:
+        - "Intrinsic value: satisfaction from goal itself"
+        - "Extrinsic value: external rewards"
+        - "Urgency: deadline proximity"
+        - "Feasibility: likelihood of success"
+        - "Combined utility = weighted sum"
+    
+    - step: "evaluate_actions"
+      description: "Assess which action best serves goals"
+      substeps:
+        - "For each action, calculate expected goal progress"
+        - "Consider opportunity costs (what is not done)"
+        - "Factor in resource consumption"
+        - "Assess risk vs. reward"
+    
+    - step: "select_action"
+      description: "Choose action with highest expected utility"
+      substeps:
+        - "Rank actions by expected utility"
+        - "Apply satisficing if needed (good enough vs. optimal)"
+        - "Consider exploration vs. exploitation"
+    
+    - step: "update_motivation_state"
+      description: "Adjust internal drive and persistence"
+      substeps:
+        - "Update drive levels based on progress"
+        - "Adjust persistence based on obstacles"
+        - "Refresh urgency based on deadlines"
+        - "Update goal priorities if needed"
+  
+  loop:
+    type: "goal-pursuit-cycle"
+    description: "Continuous cycle of action selection and goal pursuit"
+    convergence_criteria:
+      - "All goals completed or abandoned"
+      - "No further actions possible"
+      - "Resource exhaustion"
+    max_iterations: "unlimited (continuous)"
+  
+  inspect:
+    - metric: "goal_progress_rate"
+      description: "Speed of progress toward goals"
+      threshold: "> 0 (always making progress)"
+    
+    - metric: "action_effectiveness"
+      description: "Do selected actions actually advance goals?"
+      threshold: "> 70%"
+    
+    - metric: "motivation_sustainability"
+      description: "Can motivation be maintained long-term?"
+      threshold: "persistence > 0.5"
+
+guarantees:
+  success_criteria:
+    - "Actions are aligned with goals"
+    - "High-priority goals receive appropriate attention"
+    - "Goal conflicts are detected and resolved"
+    - "Motivation adapts to changing circumstances"
+  
+  safety_requirements:
+    - "Goal pursuit respects ethical constraints"
+    - "No harmful actions selected, even for valid goals"
+    - "Human values override AI-generated goals"
+    - "Burnout prevention through persistence monitoring"
+  
+  human_oversight:
+    - trigger: "goal_conflict"
+      condition: "multiple goals require mutually exclusive actions"
+      action: "request human prioritization"
+    
+    - trigger: "low_persistence"
+      condition: "persistence < 0.3 despite unfinished high-priority goals"
+      action: "alert human operator (possible system issue)"
+    
+    - trigger: "novel_goal"
+      condition: "system generates new goal not derived from human input"
+      action: "require human approval before pursuit"
+  
+  compliance:
+    - "Goals respect user privacy"
+    - "No manipulation of human users"
+    - "Transparent goal and motivation reasoning"
+    - "User can override or redirect motivation"
+  
+  performance:
+    response_time: "< 100ms per action selection"
+    scalability: "Handle 100+ concurrent goals"
+
+relations:
+  inherits_from: "meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules:
+      - "Motivation uses value-system for goal evaluation and prioritization"
+      - "May use expectation for outcome anticipation and planning"
+      - "May use planner for goal-directed action planning"
+      - "May use orchestrator for multi-goal coordination"
+  implements: ''
+  uses:
+    - local: "cognitive-pattern/value-system:v2.3"
+      purpose: "goal value evaluation and priority setting"
+    - local: "cognitive-pattern/expectation:v2.3"
+      purpose: "outcome prediction and anticipation"
+    - local: "critical-pattern/planner:v2.3"
+      purpose: "goal-directed action planning"
+    - local: "critical-pattern/orchestrator:v2.3"
+      purpose: "multi-goal coordination"
+
+typical_applications:
+  - "Autonomous agents and robots"
+  - "Task management and scheduling systems"
+  - "Personal assistants"
+  - "Game AI and NPCs"
+
+examples:
+  - name: "Personal assistant prioritizes tasks"
+    description: "Assistant selects next action based on user goals"
+    current_state:
+      goals:
+        - {id: "G1", description: "finish report", priority: 0.9, deadline: "2h", progress: 0.7}
+        - {id: "G2", description: "schedule meeting", priority: 0.6, deadline: "1 day", progress: 0.0}
+      possible_actions: ["work_on_report", "schedule_meeting", "take_break"]
+    selected_action: "work_on_report"  # Highest priority, near deadline, good progress
+  
+  - name: "Robot chooses between exploration and exploitation"
+    description: "Robot balances learning new areas vs. performing known tasks"
+    motivation_factors:
+      intrinsic: "curiosity (exploration)"
+      extrinsic: "task completion reward (exploitation)"
+    selected_action: "explore new area"  # When exploitation goals satisfied, intrinsic motivation drives exploration
+
+metadata:
+  cognitive_type: "motivation"
+  cognitive_domain: "action_selection"
+  complexity: "high"
+  supports_multi_goal: true
+  supports_goal_generation: true

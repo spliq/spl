@@ -1,0 +1,153 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Validator v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: "template/validator:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Validator (Core)"
+  description: "Core reality-agnostic validator pattern for verifying conformance"
+  owners: ["spl-core"]
+  tags: ["validator", "verification", "trust", "core", "critical-pattern"]
+
+contract:
+  goal: "Objectively verify correctness, compliance, and integrity of artifacts against defined rules"
+  return_format: "markdown with sections: Result (pass/fail), Evidence (findings list), Metrics (counts/coverage)"
+  warnings:
+    - "Must be deterministic - same input yields same result"
+    - "Must not modify subject under validation"
+    - "All failures must include specific evidence"
+  context:
+    - "Layer 1 core validator template - reality agnostic, enables specialization at L2+ for digital, physical, hybrid domains"
+  inputs:
+    - name: subject
+      type: any
+      required: true
+      description: "Artifact under validation (file, config, structure, measurement)"
+    - name: criteria
+      type: any
+      required: true
+      description: "Schema/rules/invariants or reference suite defining valid state"
+    - name: validation_type
+      type: string
+      enum: ["objective", "subjective", "consensus"]
+      default: "objective"
+      description: |
+        - objective: Ground truth exists, deterministic validation
+        - subjective: No ground truth, validation based on consistency/coherence
+        - consensus: Validation by agreement among multiple validators
+    - name: consensus_parameters
+      type: object
+      required: false
+      description: "Parameters for consensus-based validation"
+      schema:
+        properties:
+          minimum_validators: {type: "integer", minimum: 2}
+          agreement_threshold: {type: "number", minimum: 0.5, maximum: 1.0}
+          validator_pool: {type: "array", description: "List of validator identities"}
+    - name: context
+      type: object
+      required: false
+      description: "Optional environment, platform info, tolerances for validation"
+  outputs:
+    - name: result
+      type: string
+      enum: ["pass", "fail"]
+      description: "Binary validation outcome"
+    - name: evidence
+      type: array
+      description: "List of findings with locations, severity, and messages"
+      schema:
+        items:
+          id: string
+          severity: enum [info, warn, error]
+          location: string
+          rule: string
+          message: string
+          hint: string
+    - name: metrics
+      type: object
+      required: false
+      description: "Counts, coverage percentages, timing measurements"
+    - name: version
+      type: string
+      description: "Validator version and criteria version"
+
+identity:
+  domain: "spl.core"
+  taxonomy: ["pattern", "validator", "verification", "conformance"]
+  x-reality: ""  # Reality-agnostic (Layer 1)
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules: []
+  uses: []
+
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints: []
+
+execution:
+  steps:
+    - "Load and parse the subject artifact"
+    - "Load validation criteria (schema, rules, invariants)"
+    - "Apply each validation rule systematically"
+    - "Collect evidence for each finding"
+    - "Compute metrics (coverage, counts)"
+    - "Return binary result with detailed evidence"
+
+guarantees:
+  success_criteria:
+    - "Deterministic outcomes - same input always yields same result"
+    - "Evidence-based - all failures include specific evidence"
+    - "Non-modifying - validator never changes the subject"
+    - "Binary outcome - primary result is boolean pass/fail"
+  metrics: []
+  rubric:
+    pass:
+      - "Deterministic"
+      - "Evidence provided"
+      - "Subject unchanged"
+      - "Clear result"
+    fail:
+      - "Non-deterministic behavior"
+      - "Missing evidence"
+      - "Subject modified"
+      - "Unclear result"
+  validation_hooks:
+    pre_validation: []
+    post_validation:
+      - "verify_determinism"
+      - "verify_non_modification"
+
+content-specifications:
+  sections:
+    - "Validation result (pass/fail)"
+    - "Evidence list with findings"
+    - "Metrics summary"
+    - "Version information"
+
+extension_points:
+  layer: true      # Can be extended for different layers
+  pattern: true    # Can be specialized for specific validation types
+  reality: true    # Can be specialized for different realities
+
+inheritance:
+  invariants:
+    deterministic: "Same input must always produce same result"
+    non_modifying: "Validator must never modify the subject"
+    evidence_based: "All failures must include specific evidence"
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields: ["deterministic", "non_modifying", "evidence_based"]

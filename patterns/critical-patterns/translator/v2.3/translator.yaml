@@ -1,0 +1,119 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Translator v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: "template/translator:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Translator (Core)"
+  description: "Core reality-agnostic translator pattern for bidirectional domain bridges"
+  owners: ["spl-core"]
+  tags: ["translator", "core", "critical-pattern", "bidirectional"]
+
+contract:
+  goal: "Bridge two domains with a reversible, semantics-preserving mapping"
+  return_format: "markdown with sections: Purpose, Contract, Mapping Rules, Test Vectors"
+  warnings:
+    - "Ensure bidirectionality or explicit inverse"
+    - "Validate semantic preservation"
+  context:
+    - "Core Layer 1 template - reality agnostic, enables specialization at L2+"
+  inputs:
+    - name: domain_A
+      type: any
+      required: true
+      description: "Source domain data/structure"
+    - name: domain_B
+      type: any
+      required: true
+      description: "Target domain data/structure"
+  outputs:
+    - name: mapping_result
+      type: object
+      description: "Result of bidirectional mapping with validation"
+      schema:
+        forward: any
+        reverse: any
+        semantic_preserved: boolean
+  parameters:
+    - name: subtype
+      type: enum
+      options: [format, protocol, reality, abstraction, compliance]
+      description: "Boundary classification"
+
+identity:
+  domain: "spl.core"
+  taxonomy: ["pattern", "translator", "bridge"]
+  x-reality: ""  # Reality-agnostic (Layer 1)
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules: []
+  uses: []
+
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints: []
+
+execution:
+  steps:
+    - "Analyze source and target domains"
+    - "Define forward mapping (A→B)"
+    - "Define reverse mapping (B→A)"
+    - "Validate bidirectionality"
+    - "Verify semantic preservation"
+    - "Document boundary characteristics"
+
+guarantees:
+  success_criteria:
+    - "Bidirectionality or documented inverse"
+    - "Semantic preservation"
+    - "Clear boundary definition"
+  metrics: []
+  rubric:
+    pass:
+      - "Forward and reverse mappings defined"
+      - "Semantics preserved"
+      - "Boundary classified"
+    fail:
+      - "Missing inverse"
+      - "Semantic loss"
+      - "Unclear boundary"
+  validation_hooks:
+    pre_validation: []
+    post_validation:
+      - "validate_bidirectionality"
+      - "validate_semantic_preservation"
+
+content-specifications:
+  sections:
+    - "Purpose and boundary definition"
+    - "Interface specification (inputs/outputs)"
+    - "Mapping rules (forward and reverse)"
+    - "Test vectors demonstrating mappings"
+    - "Layer placement guidance"
+
+extension_points:
+  layer: true      # Can be extended for different layers
+  pattern: true    # Can be specialized for specific use cases
+  reality: true    # Can be specialized for different realities
+
+inheritance:
+  invariants:
+    bidirectional: "Must provide forward and reverse mappings or explicit inverse"
+    semantic_preservation: "Meaning must be preserved across transformation"
+    boundary_crossing: "Must clearly define domains being bridged"
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields: ["bidirectional", "semantic_preservation"]

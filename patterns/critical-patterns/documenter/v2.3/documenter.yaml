@@ -1,0 +1,291 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Documenter v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: critical/documenter:v2.3
+kind: critical-pattern
+info:
+  title: Documentation Critical Pattern
+  description: Foundational pattern that defines how all SPL patterns must be documented.
+    Documentation itself is a pattern - it inherits from meta-pattern, can be validated,
+    versioned, and composed. This ensures consistent, complete, and traceable documentation
+    across all SPL artifacts.
+  owners:
+  - brian
+  tags:
+  - documentation
+  - critical-pattern
+  - spl-native
+  - meta
+  - validation
+  x-changelog:
+  - version: v2.3
+    changes:
+    - Initial creation as L1 critical pattern
+    - Defines documentation structure, validation rules, and generation templates
+    - Enables documentation as first-class SPL pattern
+contract:
+  goal: Define the foundational contract for all SPL documentation patterns. Ensures
+    documentation is structured, validated, versioned, and can be automatically generated
+    from pattern definitions.
+  return_format: Structured documentation specification that defines required sections,
+    validation rules, and generation templates.
+  warnings:
+  - All documentation patterns MUST inherit from this critical pattern
+  - Documentation completeness is validated automatically
+  - Missing required sections will fail validation
+  context:
+  - Documentation is not an afterthought - it's a pattern
+  - All patterns (L1-L5) must have associated documentation
+  - Documentation inherits structure and validation from this pattern
+  inputs:
+  - name: pattern_yaml
+    type: object
+    required: true
+    description: The pattern YAML file to document
+  - name: documentation_context
+    type: object
+    required: false
+    description: Additional context for documentation generation (examples, use cases,
+      etc.)
+  outputs:
+  - name: documentation_artifact
+    type: object
+    description: Generated documentation in specified format
+    schema:
+      type: object
+      properties:
+        format:
+          type: string
+          enum:
+          - markdown
+          - html
+          - pdf
+          - json
+        content:
+          type: string
+          description: The generated documentation content
+        metadata:
+          type: object
+          description: Documentation metadata (version, generated_at, etc.)
+        validation_status:
+          type: object
+          properties:
+            complete:
+              type: boolean
+            missing_sections:
+              type: array
+              items:
+                type: string
+            warnings:
+              type: array
+              items:
+                type: string
+  parameters:
+  - name: output_format
+    type: string
+    description: Desired output format for documentation
+    default: markdown
+  - name: include_examples
+    type: boolean
+    description: Whether to include code examples
+    default: true
+  - name: validation_level
+    type: string
+    description: Level of validation strictness
+    enum:
+    - strict
+    - normal
+    - permissive
+    default: normal
+identity:
+  domain: spl.documentation
+  taxonomy:
+  - documentation
+  - critical-pattern
+  - meta
+  - validation
+  - generation
+  x-reality: digital
+  x-scale:
+    spatial: ''
+    temporal: ''
+    organizational: individual
+relations:
+  inherits_from: spl/meta-pattern:v2.3
+  uses: []
+  inheritance_mechanism:
+    strategy: extension
+    composition_rules:
+    - Extends meta-pattern with documentation-specific fields
+    - All documentation patterns inherit documentation structure
+    - Validates documentation completeness automatically
+selection:
+  guardrails:
+  - Documentation must include all required sections
+  - Code examples must be syntactically valid
+  - Links to other patterns must resolve
+  - Version references must be valid
+execution:
+  runtime: documentation-generator
+  environment: python:3.10+
+  steps:
+  - step: parse
+    description: Parse pattern YAML file
+    action: yaml.load(pattern_file)
+  - step: validate
+    description: Validate pattern against meta-pattern schema
+    action: validate_pattern(pattern_data)
+  - step: extract
+    description: Extract documentation fields from pattern
+    action: extract_doc_fields(pattern_data)
+  - step: generate
+    description: Generate documentation in target format
+    action: generate_docs(doc_fields, output_format)
+  - step: validate_completeness
+    description: Validate documentation completeness
+    action: validate_completeness(generated_docs)
+guarantees:
+- guarantee: Documentation completeness
+  description: All required sections are present
+  validation: Check for required_sections in generated documentation
+- guarantee: Link integrity
+  description: All pattern references resolve correctly
+  validation: Validate all pattern IDs exist in registry
+- guarantee: Code example validity
+  description: Code examples are syntactically correct
+  validation: Parse and validate code blocks
+- guarantee: Version consistency
+  description: Documentation version matches pattern version
+  validation: Compare doc version with pattern version
+content-specifications:
+  documentation_structure:
+    description: Standard structure for all SPL pattern documentation
+    required_sections:
+    - name: Overview
+      description: High-level description of the pattern
+      required: true
+    - name: Architecture
+      description: Pattern architecture and component relationships
+      required: true
+    - name: Contract
+      description: Detailed contract specification (inputs, outputs, guarantees)
+      required: true
+    - name: Usage
+      description: How to use this pattern
+      required: true
+    - name: Examples
+      description: Concrete usage examples
+      required: true
+    - name: Inheritance
+      description: Parent patterns and inheritance chain
+      required: true
+    - name: Validation
+      description: Validation rules and how to validate
+      required: false
+    - name: References
+      description: Links to related patterns and external resources
+      required: false
+  validation_rules:
+    description: Rules for validating documentation completeness
+    rules:
+    - rule: all_required_sections_present
+      description: All required sections must be present in documentation
+      severity: error
+    - rule: code_examples_valid
+      description: Code examples must be syntactically correct
+      severity: warning
+    - rule: links_resolve
+      description: All pattern links must resolve to existing patterns
+      severity: error
+    - rule: version_matches
+      description: Documentation version must match pattern version
+      severity: error
+  generation_templates:
+    description: Templates for generating documentation in different formats
+    formats:
+    - format: markdown
+      template_id: template/documenter/markdown:v2.3
+      description: Markdown documentation template
+    - format: html
+      template_id: template/documenter/html:v2.3
+      description: HTML documentation template
+    - format: pdf
+      template_id: template/documenter/pdf:v2.3
+      description: PDF documentation template
+    - format: json
+      template_id: template/documenter/json:v2.3
+      description: JSON documentation schema
+extension_points:
+- name: custom_sections
+  description: Patterns can define additional documentation sections
+  type: object
+  schema:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        required:
+          type: boolean
+- name: custom_validation
+  description: Patterns can define custom validation rules
+  type: object
+  schema:
+    type: array
+    items:
+      type: object
+      properties:
+        rule:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum:
+          - error
+          - warning
+          - info
+- name: custom_templates
+  description: Patterns can provide custom documentation templates
+  type: object
+  schema:
+    type: object
+    properties:
+      format:
+        type: string
+      template_content:
+        type: string
+      variables:
+        type: object
+x-documentation-meta:
+  description: Meta-information about documentation generation
+  auto_generated: false
+  last_validated: ''
+  validation_tool: spl-registry-validator
+  generated_from: manual
+x-examples:
+- name: Basic Documentation Generation
+  description: Generate markdown documentation for a pattern
+  code: "# Load pattern\npattern = load_pattern(\"critical/resolver:v2.3\")\n\n# Generate\
+    \ documentation\ndocs = generate_documentation(\n    pattern=pattern,\n    format=\"\
+    markdown\",\n    include_examples=True\n)\n\n# Validate completeness\nvalidation\
+    \ = validate_documentation(docs)\nassert validation.complete == True\n\n# Write\
+    \ to file\nwrite_file(\"resolver-documentation.md\", docs.content)\n"
+- name: Documentation Validation
+  description: Validate documentation completeness
+  code: "# Load existing documentation\ndocs = load_documentation(\"patterns/critical-patterns/resolver/v2.3/README.md\"\
+    )\n\n# Validate against requirements\nresult = validate_documentation_completeness(\n\
+    \    documentation=docs,\n    pattern_id=\"critical/resolver:v2.3\"\n)\n\n# Check\
+    \ results\nif not result.complete:\n    print(f\"Missing sections: {result.missing_sections}\"\
+    )\n    print(f\"Warnings: {result.warnings}\")\n"
+layer: L2

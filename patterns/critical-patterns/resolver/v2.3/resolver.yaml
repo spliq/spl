@@ -1,0 +1,292 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Resolver v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: "template/resolver:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Resolver (Core)"
+  description: "Resolves conflicts, dependencies, and ambiguities through selection, aggregation, and reconciliation across realities"
+  owners: ["spl-core"]
+  tags: ["resolver", "composition", "core", "dependency", "aggregation", "decision"]
+
+contract:
+  goal: "Find, select, combine, or reconcile resources to satisfy requirements while maintaining system integrity"
+  return_format: "markdown with sections: Resolution Plan, Results, Diagnostics, Conflicts"
+  
+  resolution_modes:
+    - name: "selection"
+      description: "Choose optimal option(s) from alternatives based on criteria"
+    - name: "aggregation"
+      description: "Combine multiple resources into unified representation or collection"
+    - name: "reconciliation"
+      description: "Resolve conflicts between competing resources while preserving essential properties"
+  
+  resolution_strategies:
+    # Selection strategies
+    first_match:
+      description: "Return first resource that satisfies all constraints"
+      use_case: "Simple, fast resolution where order implies priority"
+    best_match:
+      description: "Evaluate all candidates and select optimal based on scoring"
+      use_case: "Quality-critical resolution with well-defined optimization criteria"
+    all_matches:
+      description: "Return all resources satisfying constraints"
+      use_case: "When multiple valid solutions should be presented"
+    weighted:
+      description: "Apply configurable weights to multiple evaluation criteria"
+      use_case: "Multi-criteria decision making with trade-offs"
+    conditional:
+      description: "Apply different selection logic based on runtime conditions"
+      use_case: "Context-dependent resolution strategies"
+    # Aggregation strategies
+    collection:
+      description: "Gather resources maintaining individual identities"
+      use_case: "Simple grouping without transformation"
+    composition:
+      description: "Combine resources by composing their capabilities"
+      use_case: "Building composite functionality from parts"
+    federation:
+      description: "Maintain separate identities while providing unified interface"
+      use_case: "Distributed systems with heterogeneous resources"
+    synthesis:
+      description: "Create new resource embodying properties of all inputs"
+      use_case: "Intelligent merging with property preservation"
+    # Reconciliation strategies
+    constraint_relaxation:
+      description: "Selectively relax constraints to find feasible solution"
+      use_case: "Over-constrained problems needing pragmatic resolution"
+    negotiation:
+      description: "Iterative process to find mutually acceptable solution"
+      use_case: "Multi-stakeholder requirements with conflicts"
+    temporal_resolution:
+      description: "Resolve conflicts through time-based ordering or scheduling"
+      use_case: "Resource contention or temporal dependencies"
+  
+  decision_model:
+    phases:
+      - name: "problem_formulation"
+        description: "Define the resolution problem clearly"
+        activities: ["identify_requirements", "establish_constraints", "define_evaluation_criteria"]
+      - name: "option_generation"
+        description: "Identify or create potential solutions"
+        activities: ["search_available_resources", "generate_candidates", "decompose_problem"]
+      - name: "evaluation"
+        description: "Assess candidates against requirements and constraints"
+        activities: ["apply_criteria", "constraint_checking", "conflict_detection"]
+      - name: "resolution"
+        description: "Select or aggregate resources to resolve the problem"
+        activities: ["apply_resolution_strategy", "validate_solution", "explain_decision"]
+  
+  cross_reality_resolution:
+    approaches:
+      - name: "reality_boundary_translation"
+        description: "Use translators at reality boundaries to enable cross-reality resolution"
+      - name: "common_representation"
+        description: "Transform all inputs to shared representation before resolution"
+      - name: "reality_specific_resolution"
+        description: "Apply different resolution strategies based on reality context"
+  
+  temporal_resolution:
+    capabilities:
+      - name: "sequencing"
+        description: "Order resolution actions over time"
+      - name: "scheduling"
+        description: "Allocate resolution actions to specific time windows"
+      - name: "versioning"
+        description: "Maintain multiple versions with temporal relationships"
+  
+  warnings:
+    - "Must be deterministic for same inputs"
+    - "Must detect all conflicts between requirements"
+    - "Must maintain compatibility across resolved resources"
+    - "Must satisfy all specified constraints"
+    - "Must provide clear failure diagnostics"
+    - "Must preserve essential properties during aggregation"
+    - "Must provide explainable decision rationale"
+  context:
+    - "Layer 1 core resolver template"
+    - "Reality-agnostic pattern"
+    - "Foundation for both selection and aggregation capabilities"
+    - "Universal resolution interface"
+    - "Supports dependency, resource, discovery, reference, and constraint resolution"
+  inputs:
+    - name: requirements
+      type: object
+      required: true
+      description: "What needs to be resolved"
+      schema:
+        properties:
+          identifiers: {type: "array", description: "Resource identifiers or dependency names"}
+          constraints: {type: "object", description: "Constraints to satisfy (version, capabilities, resources)"}
+          resolution_mode:
+            type: "string"
+            enum: ["selection", "aggregation", "reconciliation", "auto"]
+            default: "auto"
+            description: "Whether to select, aggregate, or reconcile resources"
+          resolution_strategy:
+            type: "string"
+            description: "Specific strategy from contract.resolution_strategies to apply"
+          contradiction_strategy: 
+            type: "string"
+            enum: ["reject", "isolate", "temporal_resolution", "probabilistic", "multi_world"]
+            description: "How to handle paradoxical or contradictory requirements"
+            default: "reject"
+    - name: context
+      type: object
+      required: false
+      description: "Resolution context and environment"
+      schema:
+        properties:
+          environment: {type: "string"}
+          registry_urls: {type: "array"}
+          cache_policy: {type: "object"}
+          temporal_context: 
+            type: "object"
+            description: "For time-dependent paradoxes"
+            properties:
+              timeline_id: {type: "string"}
+              causality_enforcement: {type: "boolean", default: true}
+  outputs:
+    - name: resolution_result
+      type: object
+      description: "Resolution results"
+      schema:
+        properties:
+          status: {type: "string", enum: ["success", "partial", "failure", "conflict", "paradox"]}
+          mode_used: {type: "string", enum: ["selection", "aggregation", "reconciliation", "hybrid"], description: "Resolution mode that was applied"}
+          strategy_used: {type: "string", description: "Specific resolution strategy applied"}
+          resolution: {type: "object", description: "Resolved resources"}
+          conflicts: {type: "array", description: "Detected conflicts"}
+          paradoxes: 
+            type: "array"
+            description: "Detected paradoxes or contradictions"
+            items:
+              type: "object"
+              properties:
+                type: {type: "string", enum: ["logical", "temporal", "causal", "semantic"]}
+                description: {type: "string"}
+                affected_requirements: {type: "array"}
+                resolution_strategy: {type: "string"}
+                resolved: {type: "boolean"}
+          decision_trace:
+            type: "object"
+            description: "Explainable trace of resolution decision process"
+            properties:
+              problem_formulation: {type: "object", description: "How the problem was understood"}
+              candidates_evaluated: {type: "array", description: "All options considered"}
+              evaluation_criteria: {type: "object", description: "Criteria used for evaluation"}
+              scoring_results: {type: "array", description: "Scores for each candidate"}
+              decision_rationale: {type: "string", description: "Why this resolution was chosen"}
+          diagnostics: {type: "object", description: "Resolution diagnostics"}
+          metadata: {type: "object", description: "Resolution metadata"}
+
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints: []
+
+execution:
+  steps:
+    # Common steps for all modes
+    - "Phase 1: Problem Formulation"
+    - "  - Parse requirements and constraints"
+    - "  - Identify resolution mode (selection/aggregation/reconciliation or auto-detect)"
+    - "  - Establish evaluation criteria based on mode and requirements"
+    - "Phase 2: Option Generation"
+    - "  - Query available resources from registries"
+    - "  - Filter resources by hard constraints"
+    - "  - Generate candidate solutions"
+    - "Phase 3: Evaluation"
+    - "  - Detect paradoxes and contradictions in requirements"
+    - "  - Apply contradiction resolution strategy if paradoxes found"
+    - "  - Detect conflicts between requirements"
+    - "  - Evaluate candidates against criteria"
+    - "  - Score candidates (for best_match strategy)"
+    - "Phase 4: Resolution"
+    - "  - If mode=selection: Select optimal resource(s) based on strategy"
+    - "  - If mode=aggregation: Combine resources using aggregation strategy"
+    - "  - If mode=reconciliation: Negotiate or relax constraints to resolve conflicts"
+    - "  - Validate compatibility of resolved resources"
+    - "  - Generate decision trace with rationale"
+    - "  - Produce resolution result with diagnostics"
+
+guarantees:
+  success_criteria:
+    - "Determinism: same input always yields same resolution result"
+    - "Completeness: all requirements resolved or clear failure reason provided"
+    - "Compatibility: all resolved resources are mutually compatible"
+    - "Constraint satisfaction: all resolved resources satisfy specified constraints"
+    - "Conflict detection: all conflicts between requirements are detected and reported"
+    - "Property preservation: essential properties maintained during aggregation"
+    - "Explainability: decision rationale provided with full trace"
+  metrics: []
+  rubric:
+    pass:
+      - "Deterministic resolution"
+      - "All requirements met or failures explained"
+      - "Resources are compatible"
+      - "Constraints satisfied"
+      - "Properties preserved (for aggregation mode)"
+      - "Decision trace is complete and understandable"
+    fail:
+      - "Non-deterministic behavior"
+      - "Unresolved requirements without explanation"
+      - "Incompatible resources selected"
+      - "Constraint violations"
+      - "Essential properties lost during aggregation"
+      - "Missing or unclear decision rationale"
+  validation_hooks:
+    pre_validation:
+      - "validate_requirements_structure"
+      - "validate_constraints_feasibility"
+      - "validate_mode_strategy_compatibility"
+    post_validation:
+      - "validate_resolution_determinism"
+      - "validate_compatibility"
+      - "validate_constraint_satisfaction"
+      - "validate_property_preservation"
+      - "validate_decision_trace_completeness"
+
+content-specifications:
+  sections:
+    - "Resolution plan with selected resources"
+    - "Resolution results with status"
+    - "Diagnostics and decision rationale"
+    - "Conflicts detected and resolutions"
+
+extension_points:
+  layer: true      # Can be extended for different layers
+  pattern: true    # Can be specialized for specific resolution types
+  reality: true    # Can be specialized for different realities
+
+inheritance:
+  invariants:
+    determinism: "Same inputs must always produce same resolution"
+    completeness: "All requirements must be resolved or failures explained"
+    compatibility: "Resolved resources must be mutually compatible"
+    constraint_satisfaction: "All constraints must be satisfied"
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields: ["determinism", "completeness", "compatibility", "constraint_satisfaction"]
+
+identity:
+  domain: "spl.core"
+  taxonomy: ["pattern", "resolver", "composition", "dependency"]
+  x-reality: ""  # Reality-agnostic (Layer 1)
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules: []
+  uses: []
+

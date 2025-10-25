@@ -1,0 +1,179 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Meta-Pattern v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: spl/meta-pattern:v2.3
+kind: meta-pattern
+info:
+  title: Meta-Pattern v2.3
+  description: Foundation schema of SPL. Defines the minimal structure that enables
+    composition across realities and layers while preserving Greg's 4 pillars. v2.3
+    introduces canonical relationship model with three core relationship types.
+  owners:
+  - printai
+  tags:
+  - meta
+  - spl
+  - pattern
+  - 4-pillars
+  - ai-oriented
+  - relationships
+  x-changelog:
+  - version: v2.3
+    changes:
+    - 'BREAKING: Removed spl_dependencies field (replaced by uses)'
+    - 'ADDED: implements field for L5 solutions (contract implementation)'
+    - 'ADDED: uses field for runtime dependencies (local and external)'
+    - Established canonical three-relationship model
+    - Added comprehensive relationship validation rules
+    - Clarified layer-specific relationship restrictions
+  - version: v2.2
+    changes:
+    - Fixed field naming for consistency
+    - "Renamed pillars+io \u2192 contract"
+    - "Renamed evaluation \u2192 guarantees"
+    - "Renamed x-extension-points \u2192 extension_points"
+  - version: v2
+    changes:
+    - Enhanced inheritance mechanism
+    - Added extension points for layers and realities
+    - Improved validation capabilities
+contract:
+  goal: Define the foundational schema for all SPL patterns with clear, enforceable
+    relationship model.
+  return_format: YAML schema definition with comprehensive relationship specifications.
+  warnings:
+  - 'v2.3 is BREAKING CHANGE: spl_dependencies removed, must migrate to uses'
+  - implements field is L5-only, enforced by registry validator
+  - All patterns must update relations section to use new schema
+  context:
+  - Meta-pattern defines structure for L1-L5 patterns
+  - 'Three core relationships: inherits_from, implements, uses'
+  - Layer-specific validation enforced at registry level
+  inputs: []
+  outputs:
+  - name: self_check
+    type: json
+    description: Result of validating a child template against schema
+    schema:
+      $schema: http://json-schema.org/draft-07/schema#
+      type: object
+      additionalProperties: true
+  parameters: []
+identity:
+  domain: spl.foundation
+  taxonomy:
+  - meta
+  - schema
+  - foundation
+  - relationships
+  x-reality: ''
+  x-scale:
+    spatial: ''
+    temporal: ''
+    organizational: ''
+  x-emergence:
+    enabled: false
+    scale_transitions: []
+    emergent_properties: []
+  x-cognitive:
+    process_type: ''
+    cognitive_level: ''
+    mental_model_required: false
+relations:
+  inherits_from: ''
+  inheritance_mechanism:
+    strategy: self-descriptive
+    composition_rules:
+    - Meta-pattern defines its own structure
+    - All other patterns inherit from meta-pattern
+    - Changes to meta-pattern affect all descendants
+  implements: ''
+  uses: []
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints: []
+execution:
+  steps:
+  - Parse pattern YAML structure
+  - Validate against meta-pattern schema v2.3
+  - Check layer-specific relationship rules
+  - Validate inherits_from chain (L1-L5)
+  - Validate implements field (L5 only)
+  - Validate uses field schema (local/external)
+  - Ensure no deprecated fields (spl_dependencies)
+  - Return validation results
+guarantees:
+  success_criteria:
+  - Meta-pattern is syntactically valid and self-consistent
+  - All three relationship types are clearly defined
+  - Layer-specific rules are explicit and enforceable
+  - Migration path from v2.2 is documented
+  - No deprecated fields remain in schema
+  metrics: []
+  rubric:
+    pass:
+    - YAML is valid and parseable
+    - All required fields present
+    - relations section contains all three relationship types
+    - Each relationship type has clear documentation
+    - Layer restrictions are explicit
+    fail:
+    - YAML syntax errors
+    - Missing required fields
+    - Undefined relationship types
+    - Ambiguous layer rules
+    - Deprecated fields present (spl_dependencies)
+  validation_hooks:
+    pre_validation: []
+    post_validation: []
+  compliance:
+    frameworks: []
+    jurisdictions: []
+    ethical_principles: []
+    conflict_resolution:
+      strategy: ''
+      priority_order: []
+content-specifications: {}
+inheritance:
+  invariants:
+    required_fields:
+    - version
+    - schema
+    - id
+    - kind
+    - contract
+    - relations
+    - execution
+    - guarantees
+    relationship_rules:
+    - 'L1-L5: Must have inherits_from'
+    - 'L5 only: Must have implements (exactly one product)'
+    - 'L0-L4: Must NOT have implements'
+    - 'Any layer: May have uses (optional)'
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields:
+    - schema
+    - kind
+    relationship-constraints:
+    - Cannot change inherits_from cardinality (single parent)
+    - Cannot add custom relationship types
+    - Must follow uses field schema
+extension_points:
+  layer: true
+  pattern: true
+  reality: true
+  self_modification:
+    allowed: false
+    versioning_strategy: semantic
+    validation_required: true
+    max_recursion_depth: 10
+layer: L5

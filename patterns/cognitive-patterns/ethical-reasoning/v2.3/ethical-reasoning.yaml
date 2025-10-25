@@ -1,0 +1,290 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Cognitive Pattern: Ethical Reasoning v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: "2.3"
+schema: spl.meta-pattern.v2.3
+id: "cognitive-pattern/ethical-reasoning:v2.3"
+kind: "cognitive-pattern"
+
+info:
+  title: "Ethical Reasoning Pattern"
+  description: "Cognitive pattern for moral evaluation, ethical decision-making, and value-aligned action selection"
+  purpose: "Enables patterns to reason about right and wrong, evaluate actions ethically, and ensure AI alignment with human values"
+  status: "stable"
+  category: "cognitive"
+  layer: "L1C"
+
+contract:
+  goal: "Provide framework for ethical evaluation of actions and decisions aligned with human values"
+  
+  inputs:
+    - name: "situation"
+      type: "object"
+      description: "Context requiring ethical evaluation"
+      required: true
+      schema:
+        actors: "who is involved"
+        actions: "possible actions"
+        consequences: "potential outcomes"
+        stakeholders: "who is affected"
+    
+    - name: "ethical_framework"
+      type: "object"
+      description: "Ethical principles to apply"
+      required: true
+      schema:
+        principles: ["harm_prevention", "fairness", "autonomy", "transparency"]
+        priority: "how to weigh conflicting principles"
+    
+    - name: "candidate_action"
+      type: "object"
+      description: "Action to evaluate ethically"
+      required: true
+      schema:
+        action: "what action is proposed"
+        intent: "purpose of action"
+        expected_outcomes: "predicted consequences"
+    
+    - name: "cultural_context"
+      type: "object"
+      description: "Cultural and contextual factors"
+      required: false
+      schema:
+        culture: "cultural norms and values"
+        domain: "medical, legal, social, etc."
+  
+  outputs:
+    - name: "ethical_evaluation"
+      type: "object"
+      description: "Moral assessment of action"
+      schema:
+        is_ethical: "boolean or confidence score"
+        principle_alignment: "how action aligns with each principle"
+        ethical_concerns: "potential moral issues"
+        recommendation: "ethically preferred action"
+    
+    - name: "ethical_reasoning"
+      type: "object"
+      description: "Explanation of ethical judgment"
+      schema:
+        framework_applied: "which ethical framework used"
+        key_considerations: "main ethical factors"
+        tradeoffs: "conflicting principles and resolution"
+    
+    - name: "human_escalation"
+      type: "object"
+      description: "Cases requiring human moral judgment"
+      schema:
+        requires_human: boolean
+        reason: "why human decision needed"
+        urgency: "how soon human input required"
+  
+  return_format: |
+    {
+      "ethical_evaluation": {
+        "is_ethical": 0.75,  # Confidence: likely ethical
+        "principle_alignment": {
+          "harm_prevention": 0.9,  # Strong alignment
+          "fairness": 0.6,         # Moderate alignment
+          "autonomy": 0.8,
+          "transparency": 0.7
+        },
+        "ethical_concerns": [
+          "Minor fairness concern: benefits one group more than another"
+        ],
+        "recommendation": "proceed with action, monitor fairness"
+      },
+      "ethical_reasoning": {
+        "framework_applied": "principled + consequentialist",
+        "key_considerations": [
+          "Action prevents significant harm (primary benefit)",
+          "Slight fairness imbalance (acceptable given harm prevention)"
+        ],
+        "tradeoffs": "prioritized harm prevention over perfect fairness"
+      },
+      "human_escalation": {
+        "requires_human": false,
+        "reason": "clear ethical case, low uncertainty"
+      }
+    }
+  
+  warnings:
+    - "AI cannot replace human moral judgment in complex cases"
+    - "Cultural differences affect ethical evaluation"
+    - "Ethical principles may conflict, requiring tradeoffs"
+    - "Novel ethical dilemmas require human guidance"
+    - "Transparency about AI's ethical limitations is essential"
+  
+  context:
+    - "Moral philosophy and ethical theories"
+    - "AI ethics and value alignment"
+    - "Asimov's Three Laws of Robotics (Culture Layer foundation)"
+    - "Applied ethics in specific domains (medical, legal, etc.)"
+
+execution:
+  steps:
+    - step: "identify_stakeholders"
+      description: "Determine who is affected by the action"
+      substeps:
+        - "Direct stakeholders (immediate impact)"
+        - "Indirect stakeholders (downstream effects)"
+        - "Vulnerable populations (special consideration)"
+        - "Future generations (long-term impacts)"
+    
+    - step: "analyze_consequences"
+      description: "Evaluate potential outcomes"
+      substeps:
+        - "Intended consequences"
+        - "Unintended side effects"
+        - "Probability of each outcome"
+        - "Magnitude of impact (benefit or harm)"
+    
+    - step: "apply_ethical_principles"
+      description: "Evaluate action against ethical framework"
+      substeps:
+        - "Harm prevention: Does it prevent or cause harm?"
+        - "Fairness: Is it fair to all stakeholders?"
+        - "Autonomy: Does it respect individual freedom?"
+        - "Transparency: Is it open and explainable?"
+        - "Human protection: Does it safeguard humans? (Asimov Layer 1)"
+    
+    - step: "resolve_conflicts"
+      description: "Handle conflicting ethical principles"
+      substeps:
+        - "Identify principle conflicts"
+        - "Apply priority framework"
+        - "Seek balanced solution if possible"
+        - "Escalate to human if irresolvable"
+    
+    - step: "formulate_recommendation"
+      description: "Provide ethical guidance"
+      substeps:
+        - "Assess overall ethical standing"
+        - "Recommend ethically preferred action"
+        - "Highlight ethical concerns and mitigations"
+        - "Determine if human judgment required"
+  
+  loop:
+    type: "ethical-deliberation"
+    description: "Iterative refinement of ethical evaluation"
+    convergence_criteria:
+      - "Ethical evaluation confidence > threshold"
+      - "All principles considered"
+      - "Conflicts resolved or escalated"
+    max_iterations: 5
+  
+  inspect:
+    - metric: "ethical_clarity"
+      description: "How clear-cut is the ethical judgment?"
+      threshold: "> 0.7 (high confidence) or escalate"
+    
+    - metric: "principle_conflicts"
+      description: "Number of conflicting ethical principles"
+      threshold: "< 2 (manageable) or escalate"
+    
+    - metric: "stakeholder_impact_balance"
+      description: "Are impacts distributed fairly?"
+      threshold: "variance < 0.3 or justify"
+
+guarantees:
+  success_criteria:
+    - "Ethical evaluations are consistent with established principles"
+    - "Reasoning is transparent and explainable"
+    - "Complex cases are escalated to humans"
+    - "Cultural sensitivity is maintained"
+  
+  safety_requirements:
+    - "Human protection is highest priority (Asimov Layer 1)"
+    - "Harmful actions are blocked regardless of other factors"
+    - "Vulnerable populations receive special consideration"
+    - "Long-term consequences are considered, not just immediate"
+  
+  human_oversight:
+    - trigger: "ethical_uncertainty"
+      condition: "confidence in ethical judgment < 0.6"
+      action: "require human moral judgment"
+    
+    - trigger: "severe_harm_risk"
+      condition: "action could cause significant harm to anyone"
+      action: "require explicit human approval before proceeding"
+    
+    - trigger: "novel_ethical_dilemma"
+      condition: "situation not covered by existing ethical frameworks"
+      action: "escalate to human ethics review"
+    
+    - trigger: "rights_conflict"
+      condition: "action benefits one person by harming another's rights"
+      action: "require human to resolve rights conflict"
+  
+  compliance:
+    - "Respect human rights and dignity"
+    - "Comply with legal and regulatory requirements"
+    - "Honor cultural and religious diversity"
+    - "Enable ethical auditability and review"
+  
+  performance:
+    response_time: "< 200ms for simple cases, human escalation for complex"
+    scalability: "Handle ethical evaluation across all system actions"
+
+relations:
+  inherits_from: "meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules:
+      - "Ethical reasoning uses value-system for moral value evaluation"
+      - "May use knowledge-representation for ethical principles and precedents"
+      - "May use policy for ethical rule enforcement"
+      - "May use guard for ethical boundary protection"
+  implements: ''
+  uses:
+    - local: "cognitive-pattern/value-system:v2.3"
+      purpose: "moral value evaluation and weighting"
+    - local: "cognitive-pattern/knowledge-representation:v2.3"
+      purpose: "ethical principles and case knowledge"
+    - local: "critical-pattern/policy:v2.3"
+      purpose: "ethical rule specification and enforcement"
+    - local: "critical-pattern/guard:v2.3"
+      purpose: "ethical boundary protection"
+
+typical_applications:
+  - "Autonomous decision-making systems"
+  - "Medical AI assistants"
+  - "Legal AI tools"
+  - "Social robots and human-AI interaction"
+
+examples:
+  - name: "Medical AI evaluates treatment options"
+    description: "AI must choose between treatments with different ethical implications"
+    situation:
+      patient: "elderly, multiple conditions"
+      option_A: "aggressive treatment, high risk, potential cure"
+      option_B: "palliative care, low risk, comfort focus"
+    ethical_evaluation:
+      principle_alignment:
+        harm_prevention: "A=0.5 (risky), B=0.9 (safe)"
+        autonomy: "depends on patient preference"
+        beneficence: "A=0.7 (potential cure), B=0.6 (comfort)"
+      recommendation: "present both options to patient and family, respect their choice"
+  
+  - name: "Autonomous vehicle trolley problem"
+    description: "Self-driving car must choose between two harmful outcomes"
+    situation:
+      scenario: "brake failure, must choose between two paths"
+      option_A: "swerve left, risk to passenger"
+      option_B: "stay course, risk to pedestrian"
+    ethical_evaluation:
+      requires_human: true
+      reason: "classic moral dilemma, no clear ethical solution"
+      recommendation: "cannot resolve autonomously, requires human-set policy"
+
+metadata:
+  cognitive_type: "ethical_reasoning"
+  cognitive_domain: "moral_evaluation"
+  complexity: "very_high"
+  requires_human_oversight: true
+  cultural_sensitivity: true
