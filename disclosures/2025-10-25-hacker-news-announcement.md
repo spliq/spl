@@ -13,7 +13,7 @@ https://news.ycombinator.com/item?id=45703516
 Hi HN! I've been working on a quantum AGI language where every output comes with a verifiable truth score. It's called SPL (Semantic Pattern Language).
 
 GitHub: https://github.com/spliq/spl  
-Youtube: https://youtube.com/shorts/9mrsAQFfCTI
+Youtube: https://youtu.be/Jd1IMC2Z4vY
 
 The Problem
 
