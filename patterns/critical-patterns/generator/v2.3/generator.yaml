@@ -1,0 +1,130 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Generator v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: "template/generator:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Generator (Core)"
+  description: "Transforms specifications into concrete artifacts"
+  owners: ["spl-core"]
+  tags: ["generator", "creation", "manifestation", "core"]
+
+contract:
+  goal: "Transform abstract specifications into concrete artifacts that embody the original design intent"
+  return_format: "markdown with sections: Generated Artifacts, Metadata, Usage Guide"
+  warnings:
+    - "Must preserve intent from specification"
+    - "Must be template-driven"
+    - "Must be repeatable with same inputs"
+    - "Generated artifacts must manifest correctly in target reality"
+  context:
+    - "Layer 1 core generator template"
+    - "Reality-agnostic pattern"
+    - "Foundation for all generator types"
+  inputs:
+    - name: specification
+      type: object
+      required: true
+      description: "Input specification defining what to generate"
+    - name: templates
+      type: array
+      required: true
+      description: "Transformation patterns to apply"
+    - name: parameters
+      type: object
+      required: false
+      description: "Generation parameters for customization"
+  outputs:
+    - name: artifacts
+      type: array
+      description: "Generated concrete artifacts"
+    - name: metadata
+      type: object
+      description: "Information about generation process"
+      properties:
+        generated_at: timestamp
+        template_versions: object
+        parameters_used: object
+
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints: []
+
+execution:
+  steps:
+    - "Parse input specification"
+    - "Load generation templates"
+    - "Apply templates to specification"
+    - "Generate concrete artifacts"
+    - "Validate generated artifacts"
+    - "Package artifacts with metadata"
+
+guarantees:
+  success_criteria:
+    - "Intent preservation: artifacts embody specification intent"
+    - "Template-driven: generation uses explicit templates"
+    - "Repeatability: same inputs produce equivalent outputs"
+    - "Reality manifestation: artifacts usable in target reality"
+    - "Traceability: artifacts traceable to source specification"
+  metrics: []
+  rubric:
+    pass:
+      - "Intent preserved in artifacts"
+      - "Templates used consistently"
+      - "Output is repeatable"
+      - "Artifacts manifest in target reality"
+    fail:
+      - "Intent lost or distorted"
+      - "Non-template-driven generation"
+      - "Non-deterministic output"
+      - "Artifacts fail to manifest"
+  validation_hooks:
+    pre_validation: []
+    post_validation:
+      - "validate_generated_artifacts"
+      - "validate_metadata_completeness"
+      - "validate_traceability"
+
+content-specifications:
+  sections:
+    - "Generated artifacts with format specification"
+    - "Generation metadata (timestamp, templates, parameters)"
+    - "Usage guide for generated artifacts"
+    - "Traceability to source specification"
+
+extension_points:
+  layer: true      # Can be extended for different layers
+  pattern: true    # Can be specialized for specific generation types
+  reality: true    # Can be specialized for different realities
+
+inheritance:
+  invariants:
+    intent_preservation: "Generated artifacts must embody original specification intent"
+    template_driven: "Generation must use explicit templates"
+    repeatability: "Same inputs must produce equivalent outputs"
+    traceability: "Artifacts must be traceable to source"
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields: ["intent_preservation", "template_driven", "repeatability"]
+
+identity:
+  domain: "spl.core"
+  taxonomy: ["pattern", "generator", "creation", "manifestation"]
+  x-reality: ""  # Reality-agnostic (Layer 1)
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules: []
+  uses: []

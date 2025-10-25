@@ -1,0 +1,237 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Cognitive Pattern: Value System v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: "2.3"
+schema: spl.meta-pattern.v2.3
+id: "cognitive-pattern/value-system:v2.3"
+kind: "cognitive-pattern"
+
+info:
+  title: "Value System Pattern"
+  description: "Cognitive pattern for prioritization, judgment, and value-based decision making"
+  purpose: "Enables patterns to make value-based judgments, prioritize options, and align decisions with defined value hierarchies"
+  status: "stable"
+  category: "cognitive"
+  layer: "L1C"
+
+contract:
+  goal: "Provide a framework for value-based reasoning, prioritization, and judgment aligned with defined value hierarchies"
+  
+  inputs:
+    - name: "options"
+      type: "array"
+      description: "Set of alternatives to evaluate"
+      required: true
+    
+    - name: "value_criteria"
+      type: "object"
+      description: "Value hierarchy and weighting system"
+      required: true
+      schema:
+        values: "array of value definitions"
+        weights: "importance ranking of values"
+        trade_offs: "acceptable value compromises"
+    
+    - name: "context"
+      type: "object"
+      description: "Situational context affecting value judgments"
+      required: false
+  
+  outputs:
+    - name: "value_assessment"
+      type: "object"
+      description: "Value-based evaluation of options"
+      schema:
+        ranked_options: "array ordered by value alignment"
+        value_scores: "object mapping options to value scores"
+        justification: "string explaining value reasoning"
+    
+    - name: "value_conflicts"
+      type: "array"
+      description: "Identified conflicts between values"
+    
+    - name: "recommended_choice"
+      type: "object"
+      description: "Option best aligned with value system"
+  
+  return_format: |
+    {
+      "value_assessment": {
+        "ranked_options": ["option1", "option2", ...],
+        "value_scores": {
+          "option1": {"autonomy": 0.9, "safety": 0.7, "efficiency": 0.6},
+          "option2": {"autonomy": 0.5, "safety": 0.95, "efficiency": 0.8}
+        },
+        "justification": "Option1 prioritizes autonomy while maintaining acceptable safety..."
+      },
+      "value_conflicts": [
+        {"values": ["autonomy", "safety"], "severity": "medium", "resolution": "..."}
+      ],
+      "recommended_choice": {
+        "option": "option1",
+        "alignment_score": 0.85,
+        "rationale": "Best overall alignment with value hierarchy"
+      }
+    }
+  
+  warnings:
+    - "Value hierarchies must be explicitly defined and validated"
+    - "Value conflicts should be surfaced, not hidden"
+    - "Cultural context significantly affects value interpretations"
+    - "Human oversight required when value conflicts are severe"
+  
+  context:
+    - "Philosophical frameworks for value theory"
+    - "Multi-criteria decision analysis (MCDA) methods"
+    - "Ethical frameworks and moral philosophy"
+    - "Cultural value systems and differences"
+
+execution:
+  steps:
+    - step: "load_value_hierarchy"
+      description: "Load and validate value criteria and weights"
+    
+    - step: "evaluate_options"
+      description: "Assess each option against value criteria"
+      substeps:
+        - "Score each option on each value dimension"
+        - "Apply value weights to compute overall scores"
+        - "Identify value trade-offs in each option"
+    
+    - step: "detect_conflicts"
+      description: "Identify conflicts between values"
+      substeps:
+        - "Find options that maximize one value at expense of another"
+        - "Assess severity of value conflicts"
+        - "Determine if conflicts are resolvable within value system"
+    
+    - step: "rank_options"
+      description: "Order options by value alignment"
+      substeps:
+        - "Apply weighted scoring to rank options"
+        - "Consider context-specific value adjustments"
+        - "Generate justification for ranking"
+    
+    - step: "generate_recommendation"
+      description: "Select and justify recommended option"
+      substeps:
+        - "Select highest-scoring option"
+        - "Explain value alignment rationale"
+        - "Document value trade-offs accepted"
+  
+  loop:
+    type: "value-refinement"
+    description: "Iteratively refine value assessments based on feedback"
+    convergence_criteria:
+      - "Value scores stabilize (< 5% change)"
+      - "No new value conflicts detected"
+      - "Justification is coherent and complete"
+    max_iterations: 5
+  
+  inspect:
+    - metric: "value_coverage"
+      description: "Percentage of value criteria applied"
+      threshold: "> 95%"
+    
+    - metric: "conflict_resolution_rate"
+      description: "Percentage of value conflicts resolved"
+      threshold: "> 80%"
+    
+    - metric: "justification_coherence"
+      description: "Logical consistency of value reasoning"
+      threshold: "> 90%"
+
+guarantees:
+  success_criteria:
+    - "All options evaluated against complete value hierarchy"
+    - "Value conflicts identified and documented"
+    - "Recommendation has clear value-based justification"
+    - "Rankings are consistent with value weights"
+  
+  safety_requirements:
+    - "Value hierarchies must include human safety as non-negotiable"
+    - "Severe value conflicts trigger human review"
+    - "No value judgments that violate ethical principles"
+    - "Cultural value differences respected and documented"
+  
+  human_oversight:
+    - trigger: "severe_value_conflict"
+      condition: "conflict_severity > 0.7"
+      action: "escalate to human ethicist or decision maker"
+    
+    - trigger: "low_confidence"
+      condition: "alignment_score < 0.6"
+      action: "request human value judgment"
+    
+    - trigger: "novel_value_scenario"
+      condition: "context not covered by value hierarchy"
+      action: "consult human for value guidance"
+  
+  compliance:
+    - "Respect cultural value diversity"
+    - "Document value reasoning for audit trails"
+    - "Enable value hierarchy customization"
+    - "Transparent value trade-off disclosure"
+  
+  performance:
+    response_time: "< 2 seconds for value assessment"
+    scalability: "Handle up to 100 options with 20 value dimensions"
+
+relations:
+  inherits_from: "meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules:
+      - "Value systems compose with ethical reasoning for moral evaluation"
+      - "May use resolver for value conflict resolution"
+      - "May use uncertainty-handler for uncertain value judgments"
+  implements: ''
+  uses:
+    - local: "cognitive-pattern/ethical-reasoning:v2.3"
+      purpose: "moral value evaluation"
+    - local: "critical-pattern/resolver:v2.3"
+      purpose: "value conflict resolution"
+    - local: "critical-pattern/uncertainty-handler:v2.3"
+      purpose: "uncertain value judgment handling"
+
+typical_applications:
+  - "Decision-making systems"
+  - "Autonomous agents"
+  - "Resource allocation systems"
+  - "Ethical AI systems"
+
+examples:
+  - name: "Healthcare treatment prioritization"
+    description: "Evaluate treatment options based on patient values (autonomy, quality of life, longevity)"
+    value_criteria:
+      values:
+        - name: "patient_autonomy"
+          weight: 0.4
+        - name: "quality_of_life"
+          weight: 0.35
+        - name: "longevity"
+          weight: 0.25
+    
+  - name: "Autonomous vehicle ethical decisions"
+    description: "Value-based decision making in critical situations"
+    value_criteria:
+      values:
+        - name: "human_safety"
+          weight: 0.7
+          non_negotiable: true
+        - name: "minimize_harm"
+          weight: 0.2
+        - name: "follow_regulations"
+          weight: 0.1
+
+metadata:
+  cognitive_type: "evaluative"
+  cognitive_domain: "value_judgment"
+  complexity: "high"
+  cultural_sensitivity: "high"
+  requires_domain_knowledge: true

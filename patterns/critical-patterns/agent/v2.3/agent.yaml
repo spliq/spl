@@ -1,0 +1,127 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Agent v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: "template/agent:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Agent (Core)"
+  description: "Autonomous entity that perceives, decides, and acts toward goals"
+  owners: ["spl-core"]
+  tags: ["agent", "autonomy", "core", "cognitive"]
+
+contract:
+  goal: "Autonomously perceive environment, make decisions, and execute actions to achieve defined goals"
+  return_format: "markdown with sections: Perception Summary, Decision Rationale, Actions Taken, Learning"
+  warnings:
+    - "Must maintain goal alignment"
+    - "Must preserve safety constraints"
+    - "Must be accountable for actions"
+    - "Must adapt based on feedback"
+  context:
+    - "Layer 1 core agent template"
+    - "Reality-agnostic pattern"
+    - "Foundation for autonomous systems"
+  inputs:
+    - name: goal
+      type: object
+      required: true
+      description: "Goal specification with success criteria"
+    - name: environment
+      type: object
+      required: true
+      description: "Current environment state"
+    - name: capabilities
+      type: array
+      required: true
+      description: "Available actions and tools"
+  outputs:
+    - name: action_result
+      type: object
+      description: "Result of agent's actions"
+      schema:
+        perception: object
+        decision: object
+        actions: array
+        learning: object
+
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints: []
+
+execution:
+  steps:
+    - "Perceive current environment state"
+    - "Evaluate goal progress and constraints"
+    - "Make decisions based on perception and goal"
+    - "Execute selected actions"
+    - "Observe action outcomes"
+    - "Learn from experience"
+
+guarantees:
+  success_criteria:
+    - "Goal alignment: actions contribute to goal achievement"
+    - "Safety preservation: constraints never violated"
+    - "Accountability: all actions are explainable"
+    - "Adaptability: learns from feedback"
+  metrics: []
+  rubric:
+    pass:
+      - "Goal progress made"
+      - "Safety maintained"
+      - "Actions explained"
+      - "Learning captured"
+    fail:
+      - "Goal misalignment"
+      - "Safety violations"
+      - "Unexplainable actions"
+      - "No learning"
+  validation_hooks:
+    pre_validation:
+      - "validate_goal_structure"
+      - "validate_safety_constraints"
+    post_validation:
+      - "validate_goal_alignment"
+      - "validate_action_accountability"
+
+content-specifications:
+  sections:
+    - "Perception summary"
+    - "Decision rationale"
+    - "Actions taken with outcomes"
+    - "Learning and improvements"
+
+extension_points:
+  layer: true
+  pattern: true
+  reality: true
+
+inheritance:
+  invariants:
+    goal_alignment: "All actions must serve goal achievement"
+    safety_preservation: "Safety constraints must never be violated"
+    accountability: "All actions must be explainable"
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields: ["goal_alignment", "safety_preservation", "accountability"]
+
+identity:
+  domain: "spl.core"
+  taxonomy: ["pattern", "agent", "autonomy", "cognitive"]
+  x-reality: ""  # Reality-agnostic (Layer 1)
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules: []
+  uses: []

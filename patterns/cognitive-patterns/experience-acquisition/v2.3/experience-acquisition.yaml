@@ -1,0 +1,247 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Cognitive Pattern: Experience Acquisition v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: "2.3"
+schema: spl.meta-pattern.v2.3
+id: "cognitive-pattern/experience-acquisition:v2.3"
+kind: "cognitive-pattern"
+
+info:
+  title: "Experience Acquisition Pattern"
+  description: "Cognitive pattern for learning from interactions, observations, and outcomes"
+  purpose: "Enables patterns to learn from experience, adapt behavior, and improve performance over time"
+  status: "stable"
+  category: "cognitive"
+  layer: "L1C"
+
+contract:
+  goal: "Provide framework for learning from experience and integrating new knowledge into existing understanding"
+  
+  inputs:
+    - name: "experience_data"
+      type: "object"
+      description: "Observation, action, outcome data from experience"
+      required: true
+      schema:
+        context: "situation or state"
+        action: "what was done"
+        outcome: "what resulted"
+        feedback: "evaluation of outcome"
+    
+    - name: "learning_strategy"
+      type: "object"
+      description: "How to learn from experience"
+      required: true
+      schema:
+        method: "supervised | unsupervised | reinforcement | transfer"
+        update_rate: "how quickly to integrate new knowledge"
+        confidence_threshold: "minimum confidence to update"
+    
+    - name: "existing_knowledge"
+      type: "object"
+      description: "Current knowledge base to update"
+      required: false
+  
+  outputs:
+    - name: "learned_knowledge"
+      type: "object"
+      description: "New or updated knowledge from experience"
+      schema:
+        concepts: "new concepts learned"
+        relationships: "new relationships discovered"
+        patterns: "regularities identified"
+        confidence: "certainty in learned knowledge"
+    
+    - name: "behavior_update"
+      type: "object"
+      description: "Changes to behavior based on learning"
+    
+    - name: "learning_metrics"
+      type: "object"
+      description: "Performance and learning statistics"
+  
+  return_format: |
+    {
+      "learned_knowledge": {
+        "concepts": [...],
+        "relationships": [...],
+        "patterns": [
+          {
+            "pattern": "when X then Y",
+            "confidence": 0.85,
+            "evidence_count": 42
+          }
+        ]
+      },
+      "behavior_update": {
+        "strategy_adjustments": [...],
+        "policy_changes": [...]
+      },
+      "learning_metrics": {
+        "experiences_processed": 1000,
+        "knowledge_growth": 0.15,
+        "performance_improvement": 0.23
+      }
+    }
+  
+  warnings:
+    - "Learning from biased data produces biased knowledge"
+    - "Overfitting to specific experiences reduces generalization"
+    - "Catastrophic forgetting can occur without proper integration"
+    - "Human oversight required for safety-critical learning"
+  
+  context:
+    - "Machine learning theory and algorithms"
+    - "Cognitive psychology of learning"
+    - "Transfer learning and meta-learning"
+    - "Continual and lifelong learning"
+
+execution:
+  steps:
+    - step: "process_experience"
+      description: "Extract learning signals from experience data"
+      substeps:
+        - "Identify context, action, outcome triplet"
+        - "Extract relevant features and patterns"
+        - "Assess outcome quality (reward/penalty)"
+    
+    - step: "integrate_with_existing"
+      description: "Combine new experience with existing knowledge"
+      substeps:
+        - "Find related existing knowledge"
+        - "Assess consistency with existing beliefs"
+        - "Resolve conflicts (reinforce or update)"
+    
+    - step: "extract_patterns"
+      description: "Identify generalizable patterns"
+      substeps:
+        - "Find regularities across multiple experiences"
+        - "Generalize specific experiences to broader rules"
+        - "Assess pattern reliability and confidence"
+    
+    - step: "update_behavior"
+      description: "Modify behavior based on learning"
+      substeps:
+        - "Adjust strategies that led to poor outcomes"
+        - "Reinforce strategies that led to good outcomes"
+        - "Explore variations of successful strategies"
+    
+    - step: "validate_learning"
+      description: "Ensure learned knowledge is sound"
+      substeps:
+        - "Check for logical consistency"
+        - "Validate against ground truth if available"
+        - "Test generalization on new scenarios"
+  
+  loop:
+    type: "continuous-learning"
+    description: "Ongoing learning from stream of experiences"
+    convergence_criteria:
+      - "Performance plateau reached"
+      - "Knowledge confidence stabilizes"
+      - "No contradictory experiences observed"
+    max_iterations: "unlimited (continuous)"
+  
+  inspect:
+    - metric: "learning_rate"
+      description: "Speed of knowledge acquisition"
+      threshold: "> 0 (always learning)"
+    
+    - metric: "knowledge_quality"
+      description: "Accuracy of learned knowledge"
+      threshold: "> 85%"
+    
+    - metric: "generalization_ability"
+      description: "Performance on novel scenarios"
+      threshold: "> 70%"
+
+guarantees:
+  success_criteria:
+    - "Learned knowledge improves performance"
+    - "Learning preserves existing valid knowledge"
+    - "Patterns generalize beyond specific experiences"
+    - "Learning process is explainable and traceable"
+  
+  safety_requirements:
+    - "No learning from unsafe or harmful examples"
+    - "Biased data is detected and mitigated"
+    - "Critical knowledge requires human validation"
+    - "Ability to unlearn incorrect knowledge"
+  
+  human_oversight:
+    - trigger: "contradictory_learning"
+      condition: "new knowledge conflicts with validated knowledge"
+      action: "request human expert review"
+    
+    - trigger: "safety_critical_domain"
+      condition: "learning in high-stakes area (medical, safety)"
+      action: "require human approval before application"
+    
+    - trigger: "low_confidence_pattern"
+      condition: "pattern confidence < 0.6"
+      action: "flag for human verification"
+  
+  compliance:
+    - "Respect data privacy in learning"
+    - "Ensure fairness (no discriminatory learning)"
+    - "Enable learning auditability"
+    - "Support right to be forgotten (unlearning)"
+  
+  performance:
+    response_time: "< 1 second per experience"
+    scalability: "Handle continuous streams of experiences"
+
+relations:
+  inherits_from: "meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules:
+      - "Experience acquisition updates knowledge representation through learning"
+      - "May use expectation for predictive learning models"
+      - "May use validator for experience quality validation"
+      - "May use uncertainty-handler for uncertain experience data"
+  implements: ''
+  uses:
+    - local: "cognitive-pattern/knowledge-representation:v2.3"
+      purpose: "store and organize learned experiences"
+    - local: "cognitive-pattern/expectation:v2.3"
+      purpose: "predictive learning and anticipation"
+    - local: "critical-pattern/validator:v2.3"
+      purpose: "experience data validation"
+    - local: "critical-pattern/uncertainty-handler:v2.3"
+      purpose: "uncertain experience handling"
+
+typical_applications:
+  - "Adaptive systems and agents"
+  - "Personalization engines"
+  - "Autonomous robots"
+  - "Intelligent tutoring systems"
+
+examples:
+  - name: "Robot learns optimal grasping"
+    description: "Robot learns from successes and failures to improve grasping"
+    experience_data:
+      context: "object shape, size, weight"
+      action: "grasp parameters (force, angle, approach)"
+      outcome: "success or failure"
+      feedback: "object dropped or held securely"
+    
+  - name: "Customer service learns conversation patterns"
+    description: "Agent learns effective response patterns from interactions"
+    experience_data:
+      context: "customer question type, sentiment"
+      action: "response template used"
+      outcome: "customer satisfaction score"
+      feedback: "positive or negative rating"
+
+metadata:
+  cognitive_type: "learning"
+  cognitive_domain: "knowledge_acquisition"
+  complexity: "high"
+  requires_feedback: true
+  supports_transfer_learning: true

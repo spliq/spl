@@ -1,0 +1,197 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Reality Bridge v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: template/reality-bridge:v2.3
+kind: template
+layer: L1
+info:
+  title: Reality Bridge (Core)
+  description: Core pattern for interfacing between multiple realities simultaneously
+    or handling blurred reality boundaries
+  owners:
+  - spl-core
+  tags:
+  - reality-bridge
+  - multi-reality
+  - cross-reality
+  - core
+  - critical-pattern
+contract:
+  goal: Enable communication, translation, and synchronization across multiple realities
+    simultaneously
+  return_format: Multi-reality interface specification with mappings and synchronization
+    rules
+  warnings:
+  - Reality boundaries may be ambiguous or overlapping
+  - Synchronization across realities may have latency
+  - Some concepts may not have equivalents in all realities
+  - Reality perception may be subjective or observer-dependent
+  context:
+  - Layer 1 core reality bridge pattern
+  - Reality-agnostic (meta-reality)
+  - Foundation for telepathy, dreams, XR, consciousness transfer
+  - Extends translator pattern to handle multiple realities
+  inputs:
+  - name: realities
+    type: array
+    required: true
+    description: Set of realities to bridge
+    schema:
+      items:
+        reality_type: enum ["physical", "digital", "cognitive", "social", "hybrid"]
+        reality_properties: object
+        access_protocol: object
+  - name: bridge_requirements
+    type: object
+    required: true
+    description: Requirements for the reality bridge
+    schema:
+      synchronization_mode: enum ["real-time", "eventually-consistent", "snapshot"]
+      fidelity_requirements: object
+      latency_tolerance: number
+  outputs:
+  - name: reality_interface
+    type: object
+    required: true
+    description: Unified interface spanning multiple realities
+    schema:
+      mappings: array
+      sync_protocol: object
+      fidelity_metrics: object
+      incompatibilities: array
+  parameters:
+  - name: bridging_strategy
+    type: enum
+    options:
+    - direct_mapping
+    - common_abstraction
+    - federated
+    - hierarchical
+    description: Strategy for bridging realities
+    default: common_abstraction
+  - name: handle_incompatibilities
+    type: enum
+    options:
+    - approximate
+    - fail
+    - ignore
+    - transform
+    description: How to handle unmappable concepts
+    default: approximate
+identity:
+  domain: spl.core
+  taxonomy:
+  - pattern
+  - reality-bridge
+  - multi-reality
+  x-reality: meta
+relations:
+  inherits_from: spl/meta-pattern:v2.3
+  inheritance_mechanism:
+    strategy: extension
+    composition_rules:
+    - Reality bridges may compose with translators for each reality pair
+    - Can layer multiple bridges for transitive reality connections
+  uses:
+  - local: template/translator:v2.3
+    purpose: runtime dependency (migrated)
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints:
+  - Use when dealing with multiple simultaneous realities
+  - Requires clear reality boundary definitions
+  - May need subjective validation methods
+execution:
+  steps:
+  - Identify all realities to be bridged
+  - Analyze reality properties and access protocols
+  - Define cross-reality mappings
+  - Establish synchronization mechanisms
+  - Implement translation for each reality pair
+  - Handle incompatibilities and edge cases
+  - Validate bridge fidelity
+  - Monitor and maintain synchronization
+guarantees:
+  success_criteria:
+  - All realities are accessible through unified interface
+  - Mappings preserve as much information as possible
+  - Synchronization meets latency requirements
+  - Incompatibilities are documented
+  metrics:
+  - name: bridge_fidelity
+    description: Information preservation across realities
+    type: percentage
+  - name: synchronization_latency
+    description: Time delay for cross-reality updates
+    type: milliseconds
+  - name: coverage
+    description: Percentage of concepts successfully mapped
+    type: percentage
+  rubric:
+    pass:
+    - All specified realities connected
+    - Fidelity meets requirements
+    - Synchronization within latency tolerance
+    - Incompatibilities handled gracefully
+    fail:
+    - Cannot access one or more realities
+    - Unacceptable information loss
+    - Synchronization too slow
+    - Unhandled incompatibilities
+  validation_hooks:
+    pre_validation:
+    - validate_reality_access
+    - validate_mapping_completeness
+    post_validation:
+    - validate_synchronization
+    - validate_fidelity
+    - validate_bidirectionality
+content-specifications:
+  sections:
+  - title: Reality Definitions
+    required: true
+    content: Characterization of each reality being bridged
+  - title: Cross-Reality Mappings
+    required: true
+    content: How concepts translate between realities
+  - title: Synchronization Protocol
+    required: true
+    content: Rules for keeping realities synchronized
+  - title: Fidelity Analysis
+    required: true
+    content: Information preservation and loss metrics
+  - title: Incompatibility Handling
+    required: true
+    content: How unmappable concepts are managed
+  - title: Access Protocols
+    required: true
+    content: How to read/write in each reality
+extension_points:
+  layer: true
+  pattern: true
+  reality: true
+  multi_reality: true
+inheritance:
+  invariants:
+    multi_reality: Must bridge at least two distinct realities
+    synchronization: Must define synchronization mechanism
+    fidelity: Must quantify information preservation
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields:
+    - multi_reality
+    - synchronization
+    specialization-rules:
+    - L2 templates specialize for specific reality combinations (digital-physical,
+      cognitive-digital)
+    - L3 templates add technology-specific bridge implementations
+    - L4 products define specific multi-reality applications
+    - L5 solutions implement the actual bridging logic

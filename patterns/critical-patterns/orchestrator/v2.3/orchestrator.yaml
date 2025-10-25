@@ -1,0 +1,133 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Orchestrator v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: "template/orchestrator:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Orchestrator (Core)"
+  description: "Coordinates multiple agents to achieve business goals"
+  owners: ["spl-core"]
+  tags: ["orchestrator", "coordination", "core"]
+
+contract:
+  goal: "Coordinate multiple agents toward a common goal, handling dependencies, errors, and learning from outcomes"
+  return_format: "markdown with sections: Execution Plan, Results, Metrics, Learning Summary"
+  warnings:
+    - "Must guarantee progress if agents are available"
+    - "Must respect step dependencies"
+    - "Must preserve goal alignment in all steps"
+    - "Must handle failures gracefully with recovery strategies"
+  context:
+    - "Layer 1 core orchestrator template"
+    - "Reality-agnostic pattern"
+    - "Foundation for all orchestrator types"
+  inputs:
+    - name: goal_specification
+      type: object
+      required: true
+      description: "Goal to be achieved with requirements and constraints"
+    - name: available_agents
+      type: array
+      required: true
+      description: "Available agents with their capabilities"
+    - name: context
+      type: object
+      required: false
+      description: "Optional environment context and metadata"
+  outputs:
+    - name: execution_result
+      type: object
+      description: "Results of orchestration execution"
+      schema:
+        properties:
+          status: {type: "string", enum: ["success", "partial_success", "failure", "aborted"]}
+          step_results: {type: "array"}
+          criteria_evaluation: {type: "array"}
+          metrics: {type: "object"}
+
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints: []
+
+execution:
+  steps:
+    - "Parse goal specification"
+    - "Analyze available agent capabilities"
+    - "Generate execution plan with dependencies"
+    - "Execute steps in dependency order"
+    - "Monitor progress and handle errors"
+    - "Evaluate results against success criteria"
+    - "Capture learning for future orchestrations"
+
+guarantees:
+  success_criteria:
+    - "Progress guarantee: orchestration makes forward progress"
+    - "Dependency satisfaction: steps execute in correct order"
+    - "Goal alignment: all steps contribute to goal"
+    - "Deterministic replay: same inputs produce equivalent outcomes"
+    - "Resource bounds: respects declared resource limits"
+  metrics: []
+  rubric:
+    pass:
+      - "Forward progress achieved"
+      - "Dependencies respected"
+      - "Goal achieved or partial progress"
+      - "Resource limits honored"
+    fail:
+      - "Deadlock or infinite loop"
+      - "Dependency violations"
+      - "Goal misalignment"
+      - "Resource limit violations"
+  validation_hooks:
+    pre_validation:
+      - "validate_goal_structure"
+      - "validate_agent_availability"
+      - "validate_capability_coverage"
+    post_validation:
+      - "validate_execution_results"
+      - "validate_invariant_compliance"
+      - "validate_learning_capture"
+
+content-specifications:
+  sections:
+    - "Execution plan with dependencies"
+    - "Step-by-step results"
+    - "Metrics and performance data"
+    - "Learning summary and improvements"
+
+extension_points:
+  layer: true      # Can be extended for different layers
+  pattern: true    # Can be specialized for specific orchestration types
+  reality: true    # Can be specialized for different realities
+
+inheritance:
+  invariants:
+    progress_guarantee: "Must make forward progress if agents available"
+    dependency_respect: "Must execute steps in correct dependency order"
+    goal_alignment: "All steps must contribute to goal achievement"
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields: ["progress_guarantee", "dependency_respect", "goal_alignment"]
+
+identity:
+  domain: "spl.core"
+  taxonomy: ["pattern", "orchestrator", "coordination"]
+  x-reality: ""  # Reality-agnostic (Layer 1)
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules: []
+  uses: []
+

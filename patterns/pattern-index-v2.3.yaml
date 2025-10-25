@@ -1,0 +1,52 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Pattern Registry Index v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+meta-pattern:
+  - id: "spl/meta-pattern:v2.3"
+    path: "meta-pattern/v2.3/meta-pattern.yaml"
+
+critical-patterns:
+  translator:
+    - id: "template/translator:v2.3"
+      path: "critical-patterns/translator/v2.3/translator.yaml"
+  validator:
+    - id: "template/validator:v2.3"
+      path: "critical-patterns/validator/v2.3/validator.yaml"
+  generator:
+    - id: "template/generator:v2.3"
+      path: "critical-patterns/generator/v2.3/generator.yaml"
+  orchestrator:
+    - id: "template/orchestrator:v2.3"
+      path: "critical-patterns/orchestrator/v2.3/orchestrator.yaml"
+  resolver:
+    - id: "template/resolver:v2.3"
+      path: "critical-patterns/resolver/v2.3/resolver.yaml"
+  agent:
+    - id: "template/agent:v2.3"
+      path: "critical-patterns/agent/v2.3/agent.yaml"
+  hypothesis:
+    - id: "template/hypothesis:v2.3"
+      path: "critical-patterns/hypothesis/v2.3/hypothesis.yaml"
+  entity:
+    - id: "template/entity:v2.3"
+      path: "critical-patterns/entity/v2.3/entity.yaml"
+  reality-bridge:
+    - id: "template/reality-bridge:v2.3"
+      path: "critical-patterns/reality-bridge/v2.3/reality-bridge.yaml"
+  uncertainty-handler:
+    - id: "template/uncertainty-handler:v2.3"
+      path: "critical-patterns/uncertainty-handler/v2.3/uncertainty-handler.yaml"
+  policy-guard:
+    - id: "template/policy-guard:v2.3"
+      path: "critical-patterns/policy-guard/v2.3/policy-guard.yaml"
+  documenter:
+    - id: "template/documenter:v2.3"
+      path: "critical-patterns/documenter/v2.3/documenter.yaml"
+  monitor:
+    - id: "template/monitor:v2.3"
+      path: "critical-patterns/monitor/v2.3/monitor.yaml"

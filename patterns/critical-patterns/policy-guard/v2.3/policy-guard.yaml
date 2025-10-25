@@ -1,0 +1,237 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Critical Pattern: Policy Guard v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: 2.3
+schema: spl.meta-pattern.v2.3
+id: "template/policy-guard:v2.3"
+kind: template
+layer: L1
+
+info:
+  title: "Policy/Guard (Core)"
+  description: "Core reality-agnostic pattern for enforcing rules, constraints, and protective boundaries"
+  owners: ["spl-core"]
+  tags: ["policy", "guard", "enforcement", "security", "safety", "constraints", "core", "critical-pattern"]
+
+contract:
+  goal: "Enforce rules, constraints, and protective boundaries across all systems, preventing violations and enabling controlled operation"
+  return_format: "markdown with sections: Action (allow/deny/modify), Reason (enforcement explanation), Evidence (rule violations), State (system state after enforcement)"
+  warnings:
+    - "Must be deterministic - same context yields same enforcement decision"
+    - "Must fail-safe - uncertain situations default to deny"
+    - "All denials must include specific violation evidence"
+    - "Guards must be composable - multiple guards can layer protection"
+  context:
+    - "Layer 1 core policy/guard template - reality agnostic, enables specialization at L2+ for digital (security policies, access control), physical (safety interlocks, limit switches), and hybrid domains"
+  inputs:
+    - name: subject
+      type: any
+      required: true
+      description: "Entity, action, or operation seeking to pass the guard (user, process, robot movement, data access)"
+    - name: policy
+      type: object
+      required: true
+      description: "Policy definition with rules, constraints, and boundaries"
+      schema:
+        properties:
+          rules: {type: "array", description: "List of enforceable rules"}
+          constraints: {type: "object", description: "Limits and boundaries"}
+          enforcement_mode: {type: "string", enum: ["enforcing", "permissive", "audit"]}
+          fail_mode: {type: "string", enum: ["closed", "open"], default: "closed"}
+    - name: context
+      type: object
+      required: true
+      description: "Current system state, environment, and relevant metadata for enforcement decision"
+      schema:
+        properties:
+          timestamp: {type: "string"}
+          environment: {type: "object"}
+          state: {type: "object"}
+          history: {type: "array", description: "Previous enforcement decisions"}
+    - name: enforcement_type
+      type: string
+      enum: ["preventive", "detective", "corrective"]
+      default: "preventive"
+      description: |
+        - preventive: Block violations before they occur
+        - detective: Detect and report violations after they occur
+        - corrective: Detect violations and automatically remediate
+    - name: action_on_violation
+      type: string
+      enum: ["deny", "allow_with_warning", "modify", "escalate"]
+      default: "deny"
+      description: "Action to take when policy violation detected"
+  outputs:
+    - name: action
+      type: string
+      enum: ["allow", "deny", "modify", "escalate"]
+      description: "Enforcement decision"
+    - name: reason
+      type: string
+      description: "Explanation of enforcement decision with specific rules applied"
+    - name: evidence
+      type: array
+      description: "List of policy violations or compliance confirmations"
+      schema:
+        items:
+          rule_id: string
+          severity: enum [info, warning, critical]
+          violated: boolean
+          message: string
+          remediation: string
+    - name: modified_subject
+      type: any
+      required: false
+      description: "Modified version of subject if action is 'modify' (e.g., sanitized input, limited scope)"
+    - name: state_change
+      type: object
+      required: false
+      description: "Changes to system state resulting from enforcement (locks acquired, counters incremented)"
+    - name: audit_log
+      type: object
+      required: true
+      description: "Complete audit trail of enforcement decision"
+      schema:
+        properties:
+          timestamp: string
+          decision: string
+          rules_evaluated: array
+          context_snapshot: object
+
+identity:
+  domain: "spl.core"
+  taxonomy: ["pattern", "policy", "guard", "enforcement", "security", "safety"]
+  x-reality: ""  # Reality-agnostic (Layer 1)
+
+relations:
+  inherits_from: "spl/meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules: []
+  uses: []
+
+selection:
+  preferred_models: []
+  preferred_tools: []
+  constraints:
+    - "Policy evaluation must complete within timeout to fail-safe"
+    - "Guard composition must maintain fail-safe property"
+    - "Audit logging must be tamper-evident"
+
+execution:
+  steps:
+    - "Load and parse policy definition with rules and constraints"
+    - "Evaluate current context and system state"
+    - "Check subject against each policy rule systematically"
+    - "Determine enforcement action based on violations and enforcement mode"
+    - "Apply fail-safe defaults if evaluation uncertain or times out"
+    - "Execute enforcement action (allow/deny/modify/escalate)"
+    - "Record complete audit trail with decision rationale"
+    - "Return action with evidence and state changes"
+
+guarantees:
+  success_criteria:
+    - "Deterministic enforcement - same context yields same decision"
+    - "Fail-safe operation - uncertainty defaults to deny/safe state"
+    - "Evidence-based - all denials include specific violation evidence"
+    - "Auditable - complete trail of enforcement decisions"
+    - "Composable - multiple guards can layer without conflicts"
+    - "Tamper-resistant - guard logic cannot be bypassed"
+  metrics:
+    - name: "enforcement_rate"
+      description: "Ratio of denied to total requests"
+    - name: "false_positive_rate"
+      description: "Legitimate requests incorrectly denied"
+    - name: "false_negative_rate"
+      description: "Violations incorrectly allowed"
+    - name: "response_time"
+      description: "Time to enforcement decision"
+  rubric:
+    pass:
+      - "Deterministic enforcement"
+      - "Fail-safe defaults applied"
+      - "Evidence provided for all decisions"
+      - "Complete audit trail"
+      - "Composable with other guards"
+      - "Tamper-resistant implementation"
+    fail:
+      - "Non-deterministic behavior"
+      - "Unsafe failure modes"
+      - "Missing violation evidence"
+      - "Incomplete audit trail"
+      - "Guard composition conflicts"
+      - "Bypassable logic"
+  validation_hooks:
+    pre_enforcement:
+      - "verify_policy_integrity"
+      - "validate_context_completeness"
+    post_enforcement:
+      - "verify_determinism"
+      - "verify_audit_completeness"
+      - "verify_fail_safe_compliance"
+
+content-specifications:
+  sections:
+    - "Enforcement action (allow/deny/modify/escalate)"
+    - "Reason with specific rules applied"
+    - "Evidence of violations or compliance"
+    - "Modified subject (if applicable)"
+    - "State changes"
+    - "Complete audit log"
+
+extension_points:
+  layer: true      # Can be extended for different layers
+  pattern: true    # Can be specialized for specific policy types
+  reality: true    # Can be specialized for different realities (digital security, physical safety)
+  enforcement: true # Can customize enforcement strategies
+  composition: true # Can compose multiple guards
+
+inheritance:
+  invariants:
+    deterministic: "Same context must always produce same enforcement decision"
+    fail_safe: "Uncertain situations must default to deny/safe state"
+    evidence_based: "All denials must include specific violation evidence"
+    auditable: "All enforcement decisions must be fully logged"
+    composable: "Guards must be stackable without conflicts"
+    tamper_resistant: "Guard logic must be protected from bypass"
+  extension-rules:
+    allow-additional-fields: true
+    immutable-fields: ["deterministic", "fail_safe", "evidence_based", "auditable", "composable", "tamper_resistant"]
+
+specialization_examples:
+  digital:
+    - "Security policies (RBAC, ABAC, MAC)"
+    - "Access control guards"
+    - "Rate limiting and quotas"
+    - "Input validation and sanitization"
+    - "API gateways and firewalls"
+  physical:
+    - "Safety interlocks and limit switches"
+    - "Emergency stop systems"
+    - "Zone access control"
+    - "Load and stress limits"
+    - "Environmental constraints (temperature, pressure)"
+  hybrid:
+    - "Robot safety zones (digital + physical)"
+    - "IoT device permissions"
+    - "Autonomous vehicle boundaries"
+    - "Smart building access control"
+
+composition_patterns:
+  sequential:
+    description: "Guards evaluated in sequence, any denial blocks"
+    example: "Authentication → Authorization → Rate Limiting"
+  parallel:
+    description: "Guards evaluated simultaneously, all must pass"
+    example: "Time-based access AND Location-based access AND Role-based access"
+  hierarchical:
+    description: "Layered guards with escalation"
+    example: "Application guard → Network guard → System guard"
+  adaptive:
+    description: "Guards adjust based on context and history"
+    example: "Stricter policies after failed attempts or suspicious behavior"

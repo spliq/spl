@@ -1,0 +1,261 @@
+# ─────────────────────────────────────────────────────────────────
+# SPL Cognitive Pattern: Expectation v2.3
+# ─────────────────────────────────────────────────────────────────
+# Version: 2.3
+# Owner: Spliq team
+# License: Apache 2.0
+# ─────────────────────────────────────────────────────────────────
+
+version: "2.3"
+schema: spl.meta-pattern.v2.3
+id: "cognitive-pattern/expectation:v2.3"
+kind: "cognitive-pattern"
+
+info:
+  title: "Expectation Pattern"
+  description: "Cognitive pattern for prediction, surprise detection, and belief updating based on outcomes"
+  purpose: "Enables patterns to predict future states, detect anomalies, and learn from prediction errors"
+  status: "stable"
+  category: "cognitive"
+  layer: "L1C"
+
+contract:
+  goal: "Provide framework for forming expectations, comparing with reality, and learning from mismatches"
+  
+  inputs:
+    - name: "current_state"
+      type: "object"
+      description: "Current situation and context"
+      required: true
+      schema:
+        environment: "observable state"
+        history: "relevant past states/events"
+    
+    - name: "action"
+      type: "object"
+      description: "Action being considered or taken"
+      required: false
+      schema:
+        action_type: "what action"
+        parameters: "action details"
+    
+    - name: "prediction_request"
+      type: "object"
+      description: "What to predict"
+      required: true
+      schema:
+        target: "what to predict (state, outcome, event)"
+        horizon: "how far ahead (time or steps)"
+        confidence_threshold: "minimum acceptable confidence"
+    
+    - name: "observed_outcome"
+      type: "object"
+      description: "Actual outcome (for learning from prediction errors)"
+      required: false
+  
+  outputs:
+    - name: "expectation"
+      type: "object"
+      description: "Predicted future state or outcome"
+      schema:
+        predicted_state: "expected future state"
+        confidence: "certainty in prediction (0.0-1.0)"
+        uncertainty_sources: "what could go wrong"
+    
+    - name: "surprise_signal"
+      type: "object"
+      description: "Mismatch between expectation and reality"
+      schema:
+        surprise_level: "magnitude of prediction error (0.0-1.0)"
+        direction: "better or worse than expected"
+        explanation: "what differed and why"
+    
+    - name: "updated_model"
+      type: "object"
+      description: "Refined prediction model based on errors"
+  
+  return_format: |
+    {
+      "expectation": {
+        "predicted_state": "system completes task in 5 minutes",
+        "confidence": 0.82,
+        "uncertainty_sources": ["network latency", "resource availability"]
+      },
+      "surprise_signal": {
+        "surprise_level": 0.3,  # Moderate surprise
+        "direction": "worse",  # Took longer than expected
+        "explanation": "network latency was 2x higher than historical average"
+      },
+      "updated_model": {
+        "network_latency_model": "increased expected variance by 20%"
+      }
+    }
+  
+  warnings:
+    - "Overconfident predictions lead to poor surprise detection"
+    - "Ignoring low-probability high-impact events creates blind spots"
+    - "Prediction errors require model updates to improve accuracy"
+    - "Surprise in safety-critical domains requires immediate human notification"
+  
+  context:
+    - "Predictive coding and Bayesian brain theories"
+    - "Surprise-based learning and curiosity"
+    - "Statistical prediction and forecasting"
+    - "Anomaly detection and outlier analysis"
+
+execution:
+  steps:
+    - step: "build_prediction_model"
+      description: "Construct model of how the world works"
+      substeps:
+        - "Extract patterns from historical data"
+        - "Identify causal relationships"
+        - "Model uncertainty and variance"
+        - "Incorporate domain knowledge"
+    
+    - step: "generate_expectation"
+      description: "Predict future state or outcome"
+      substeps:
+        - "Apply prediction model to current state"
+        - "Simulate forward in time"
+        - "Calculate confidence based on model uncertainty"
+        - "Identify key uncertainty sources"
+    
+    - step: "compare_with_reality"
+      description: "Measure prediction error when outcome occurs"
+      substeps:
+        - "Observe actual outcome"
+        - "Calculate difference from expectation"
+        - "Quantify surprise level"
+        - "Classify type of error (systematic vs. random)"
+    
+    - step: "update_model"
+      description: "Learn from prediction errors"
+      substeps:
+        - "Identify why prediction was wrong"
+        - "Update model parameters or structure"
+        - "Increase uncertainty if needed"
+        - "Validate updated model on historical data"
+    
+    - step: "trigger_actions"
+      description: "React to surprise signals"
+      substeps:
+        - "High surprise → investigate anomaly"
+        - "Systematic errors → revise model"
+        - "Safety-critical surprise → alert human"
+        - "Positive surprise → explore further"
+  
+  loop:
+    type: "prediction-error-minimization"
+    description: "Continuous cycle of predict → observe → learn → predict"
+    convergence_criteria:
+      - "Prediction accuracy stabilizes"
+      - "Surprise rate decreases"
+      - "Model confidence increases"
+    max_iterations: "unlimited (continuous)"
+  
+  inspect:
+    - metric: "prediction_accuracy"
+      description: "Percentage of correct predictions"
+      threshold: "> 80%"
+    
+    - metric: "surprise_rate"
+      description: "Frequency of high-surprise events"
+      threshold: "< 10%"
+    
+    - metric: "model_confidence"
+      description: "Average confidence in predictions"
+      threshold: "> 0.75"
+
+guarantees:
+  success_criteria:
+    - "Predictions are well-calibrated (confidence matches accuracy)"
+    - "Surprise detection identifies true anomalies"
+    - "Model improves over time through learning"
+    - "Uncertainty is quantified and communicated"
+  
+  safety_requirements:
+    - "High-surprise events in critical domains trigger human alerts"
+    - "Low-confidence predictions are flagged as uncertain"
+    - "Black swan events (rare, high-impact) are considered"
+    - "Prediction errors do not lead to dangerous actions"
+  
+  human_oversight:
+    - trigger: "high_surprise_critical_domain"
+      condition: "surprise > 0.7 in safety/medical/financial domain"
+      action: "immediate human notification and explanation"
+    
+    - trigger: "systematic_prediction_failure"
+      condition: "accuracy < 50% over extended period"
+      action: "alert human, model may be fundamentally wrong"
+    
+    - trigger: "novel_situation"
+      condition: "current state outside training distribution"
+      action: "flag low confidence, request human input"
+  
+  compliance:
+    - "Predictions do not perpetuate bias"
+    - "Prediction reasoning is explainable"
+    - "Users can contest predictions"
+    - "Prediction data respects privacy"
+  
+  performance:
+    response_time: "< 50ms per prediction"
+    scalability: "Handle 1000+ predictions per second"
+
+relations:
+  inherits_from: "meta-pattern:v2.3"
+  inheritance_mechanism:
+    strategy: "extension"
+    composition_rules:
+      - "Expectation draws from knowledge-representation for predictive models"
+      - "May use experience-acquisition for learning prediction patterns"
+      - "May use uncertainty-handler for uncertain predictions"
+      - "May use validator for prediction accuracy validation"
+  implements: ''
+  uses:
+    - local: "cognitive-pattern/knowledge-representation:v2.3"
+      purpose: "predictive model knowledge base"
+    - local: "cognitive-pattern/experience-acquisition:v2.3"
+      purpose: "learning prediction patterns from experience"
+    - local: "critical-pattern/uncertainty-handler:v2.3"
+      purpose: "uncertain prediction handling"
+    - local: "critical-pattern/validator:v2.3"
+      purpose: "prediction accuracy validation"
+
+typical_applications:
+  - "Predictive maintenance systems"
+  - "Anomaly detection systems"
+  - "Autonomous agents (predicting environment changes)"
+  - "Recommendation engines"
+
+examples:
+  - name: "Predictive maintenance predicts equipment failure"
+    description: "System predicts when machine will fail based on sensor data"
+    current_state:
+      machine: "manufacturing_robot_5"
+      temperature: 85°C
+      vibration: 3.2mm/s
+      operating_hours: 4820
+    expectation:
+      predicted_state: "failure in 72 hours"
+      confidence: 0.88
+      reason: "temperature and vibration trending toward failure thresholds"
+    
+  - name: "Autonomous vehicle predicts pedestrian crossing"
+    description: "Car predicts pedestrian will cross street"
+    current_state:
+      pedestrian_position: "sidewalk near crosswalk"
+      pedestrian_gaze: "toward street"
+      traffic_light: "pedestrian_walk_signal"
+    expectation:
+      predicted_state: "pedestrian will cross in next 2 seconds"
+      confidence: 0.92
+      action: "slow down preemptively"
+
+metadata:
+  cognitive_type: "prediction"
+  cognitive_domain: "future_state_estimation"
+  complexity: "high"
+  supports_uncertainty_quantification: true
+  supports_online_learning: true
