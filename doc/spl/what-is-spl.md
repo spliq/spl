@@ -127,7 +127,6 @@ composed_truth = sqrt(0.80 * 0.70) + 0.15 = 0.89
 **Result:** AI that reasons correctly about context-dependent truth.
 
 **Note:** This is quantum *mathematics* on classical hardware (CPUs/GPUs), not quantum computing.
-**Note:** This is quantum *mathematics* on classical hardware (CPUs/GPUs), not quantum computing.
 
 ---
 
