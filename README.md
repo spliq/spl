@@ -71,7 +71,7 @@ SPL is how you specify, measure, and align intelligence universally.
 - **Pattern Registry**: Unified index of all patterns (`patterns/pattern-index-v2.3.yaml`)
 
 **Documentation:**
-- [What is SPL?](doc/what-is-spl.md) - Start here
+- [What is SPL?](doc/spl/what-is-spl.md) - Start here
 - [Critical Patterns Guide](doc/patterns/what-are-l1-critical-patterns.md)
 - [Cognitive Patterns Guide](doc/patterns/what-are-l1c-cognitive-patterns.md)
 - [Six Layers Overview](doc/patterns/spl-six-layers-overview.md)
