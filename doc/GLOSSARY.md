@@ -1,7 +1,7 @@
 # SPL Glossary
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Canonical reference (internal & public)  
 Audience: All SPL contributors, developers, and users
@@ -19,11 +19,11 @@ A canonical reference for all terminology used in the Semantic Pattern Language 
 ### SPL (Semantic Pattern Language)
 The quantum AGI language where every output has a verifiable truth score. Uses quantum-inspired composition and cognitive patterns to create AGI-capable systems with provable correctness instead of black-box guesses.
 
-### SPLIQ
-The first AGI implementation built on SPL. A chat/API platform that implements L1C cognitive patterns (value-system, knowledge-representation, experience-acquisition, motivation, expectation, ethical-reasoning) to create verifiable AGI. SPLIQ can learn, reason, align with values, and make predictions—all with truth scores. Sits between any LLM and applications, transforming raw models into AGI-capable systems with audit trails and privacy via MCPs.
+### SPLiQ
+The first AGI implementation built on SPL. A chat/API platform that implements L1C cognitive patterns (value-system, knowledge-representation, experience-acquisition, motivation, expectation, ethical-reasoning) to create verifiable AGI. SPLiQ can learn, reason, align with values, and make predictions—all with truth scores. Sits between any LLM and applications, transforming raw models into AGI-capable systems with audit trails and privacy via MCPs.
 
-### Spliqer
-The truth-validated marketplace where everything is verified by SPL. Every listing (solutions, patterns, agents, tools) has SPL-verified truth scores for quality, security, performance, and compliance. Unlike traditional marketplaces based on popularity or claims, Spliqer provides provable quality where participants (humans, AI agents, devices) can trust what they buy because truth is verified, not hoped for.
+### SPLiQer
+The truth-validated marketplace where everything is verified by SPL. Every listing (solutions, patterns, agents, tools) has SPL-verified truth scores for quality, security, performance, and compliance. Unlike traditional marketplaces based on popularity or claims, SPLiQer provides provable quality where participants (humans, AI agents, devices) can trust what they buy because truth is verified, not hoped for.
 
 ### Pattern
 A reusable specification that defines a contract, execution model, and guarantees for a specific capability or behavior. Every pattern follows the meta-pattern structure.

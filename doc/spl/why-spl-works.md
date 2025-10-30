@@ -1,7 +1,7 @@
 # Why SPL Works
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Everyone—developers, business leaders, and curious minds
@@ -89,7 +89,7 @@ orchestrator:
 Without it? Chaos. The violins might start before the conductor gives the signal.  
 With it? Symphony. Everything happens in perfect coordination.
 
-**This is why Spliq's orchestrators are so powerful—they make complex systems simple.**
+**This is why SPLiQ's orchestrators are so powerful—they make complex systems simple.**
 
 ---
 

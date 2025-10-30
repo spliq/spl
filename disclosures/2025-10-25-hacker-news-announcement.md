@@ -89,7 +89,7 @@ Use Cases
 Hard Questions
 
 "Isn't this over-engineered?"  
-Works at every level—chatbots to surgery robots. Our platform spliq.ai will make it free.
+Works at every level—chatbots to surgery robots. Our platform [spliq.ai](https://spliq.ai) will make it free.
 
 "How enforce truth scores?"  
 Patterns declare verification methods. Audit the chain. Community scores trust.
@@ -108,4 +108,4 @@ What We Need
 
 Here all day for questions. Hit me with skepticism—I'd rather fix problems now.
 
-~ ptah (Carlos Garcia - Spliq team)
+~ ptah (Carlos Garcia - SPLiQ team)

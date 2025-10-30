@@ -1,7 +1,7 @@
 # What is SPL?
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Everyone—developers, business leaders, researchers, and anyone curious about AI
@@ -480,12 +480,12 @@ guarantees:
 - Open specification
 - Anyone can implement
 
-**2. SPLIQ (The AGI)**
+**2. SPLiQ (The AGI)**
 - Implements all six L1C cognitive patterns
 - First verifiable AGI
 - Built on SPL foundation
 
-**3. Spliqer (The Marketplace)**
+**3. SPLiQer (The Marketplace)**
 - Where patterns live
 - All verified by SPL
 - Developers share, businesses deploy
@@ -611,6 +611,6 @@ This is AGI you can trust.
 
 ---
 
-**Author:** Spliq team  
+**Author:** SPLiQ team  
 **Version:** 2.3  
 **License:** Apache 2.0

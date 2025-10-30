@@ -1,7 +1,7 @@
 # SPL Versioning Policy
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: MANDATORY  
 Audience: All SPL pattern creators and maintainers
