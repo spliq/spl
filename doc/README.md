@@ -1,7 +1,7 @@
 # SPL Documentation
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public documentation index  
 Audience: Everyone—developers, researchers, business leaders, and anyone curious about SPL
@@ -54,7 +54,7 @@ This documentation will help you understand what SPL is, why it works, and how t
 - What is AGI really?
 - The six cognitive patterns (L1C)
 - Why these six = general intelligence
-- How Spliq is building AGI with minimal layers
+- How SPLiQ is building AGI with minimal layers
 
 ---
 
@@ -176,7 +176,7 @@ Then explore the topics that interest you most. Every document is designed to st
 
 ---
 
-**Author:** Spliq team  
+**Author:** SPLiQ team  
 **Version:** 2.3  
 **License:** Apache 2.0
 

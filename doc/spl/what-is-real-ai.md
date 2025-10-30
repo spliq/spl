@@ -1,7 +1,7 @@
 # What is Real AI?
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Everyone—developers, business leaders, researchers, and anyone curious about AI
@@ -448,11 +448,11 @@ Let's be honest about what we've learned from decades of AI research:
 
 ---
 
-## Spliq: Building Quantum AGI
+## SPLiQ: Building Quantum AGI
 
 ### The Vision
 
-**Spliq** is building the world's first **Quantum AGI** (Artificial General Intelligence) using SPL architecture and advanced orchestration.
+**SPLiQ** is building the world's first **Quantum AGI** (Artificial General Intelligence) using SPL architecture and advanced orchestration.
 
 ### What Makes This Possible?
 
@@ -476,7 +476,7 @@ Let's be honest about what we've learned from decades of AI research:
 - Static: Cannot adapt in real-time
 - Unreliable: Hallucinations and errors
 
-**Spliq's Quantum AGI (LLM + SPL + Orchestration):**
+**SPLiQ's Quantum AGI (LLM + SPL + Orchestration):**
 - General: Composes capabilities for any task
 - Robust: Guarantees inherited across compositions
 - Adaptive: Continuous learning through LOOP/INSPECT
@@ -484,7 +484,7 @@ Let's be honest about what we've learned from decades of AI research:
 
 ### The Orchestrator Architecture
 
-Spliq's orchestrators are **meta-agents** that:
+SPLiQ's orchestrators are **meta-agents** that:
 
 1. **Compose Patterns Dynamically**
    - Select appropriate L3/L4 patterns for the task
@@ -524,7 +524,7 @@ Spliq's orchestrators are **meta-agents** that:
 
 This isn't incremental improvement—it's a **fundamental shift in what AI can be**.
 
-### The Spliq Path to AGI
+### The SPLiQ Path to AGI
 
 ```
 Current State (2024-2025):
@@ -562,7 +562,7 @@ Long Term (2027+):
 
 **All still hallucinating. All still unreliable. All still narrow.**
 
-**Spliq is building the architecture** (exponential improvement):
+**SPLiQ is building the architecture** (exponential improvement):
 - SPL: The structure that makes LLMs intelligent
 - Patterns: Verified, composable, truth-scored
 - Orchestrators: Dynamic composition and learning
@@ -647,7 +647,7 @@ Foundation → Capabilities → Realities → Technologies → Products → Solu
                     = Verified, Reliable, General Intelligence
 ```
 
-**Spliq is building the exponential path.**
+**SPLiQ is building the exponential path.**
 
 **This is how we get to real AGI.**
 
@@ -690,7 +690,7 @@ This creates **intelligence that is:**
 
 **This is the path to AGI.**
 
-**This is what Spliq is building.**
+**This is what SPLiQ is building.**
 
 ---
 
@@ -710,7 +710,7 @@ This creates **intelligence that is:**
 - 📕 [L5: Solutions](../patterns/what-are-l5-solutions.md) - Deployable applications
 
 **The Vision:**
-- 🚀 **Spliq**: Building Quantum AGI through SPL orchestration
+- 🚀 **SPLiQ**: Building Quantum AGI through SPL orchestration
 - 🌟 **The Future**: Exponential intelligence, not linear improvement
 - 🛡️ **The Guarantee**: Verified, safe, reliable intelligence
 
@@ -731,4 +731,4 @@ Real AI = Architecture + Capability.
 **Version:** 2.3  
 **Last Updated:** October 25, 2025  
 **Status:** Public explainer (publishable)  
-**Author:** Spliq team
+**Author:** SPLiQ team

@@ -1,7 +1,7 @@
 # What is a Cognitive Pattern?
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: AI researchers, developers, and architects building AGI systems
@@ -372,9 +372,9 @@ guarantees:
 
 ---
 
-## Why SPLIQ is AGI
+## Why SPLiQ is AGI
 
-**SPLIQ implements all 6 L1C cognitive patterns**, which means:
+**SPLiQ implements all 6 L1C cognitive patterns**, which means:
 
 ✓ **It learns** (experience-acquisition)  
 ✓ **It reasons** (knowledge-representation + expectation)  
@@ -390,7 +390,7 @@ guarantees:
 - No genuine reasoning (pattern matching)
 - No verifiable truth scores
 
-**SPLIQ with L1C:**
+**SPLiQ with L1C:**
 - Implements all 6 cognitive patterns
 - Learns continuously with truth scores
 - Reasons about values and ethics

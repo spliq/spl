@@ -1,7 +1,7 @@
 # ¿Qué es la IA Real?
 
 Versión: 2.3  
-Propietario: Equipo Spliq  
+Propietario: Equipo SPLiQ  
 Licencia: Apache 2.0  
 Estado: Explicación pública (publicable)  
 Audiencia: Todos—desarrolladores, líderes empresariales, investigadores y cualquier persona curiosa sobre la IA
@@ -448,11 +448,11 @@ Seamos honestos sobre lo que hemos aprendido de décadas de investigación en IA
 
 ---
 
-## Spliq: Construyendo la AGI Cuántica
+## SPLiQ: Construyendo la AGI Cuántica
 
 ### La Visión
 
-**Spliq** está construyendo la primera **AGI Cuántica** (Inteligencia General Artificial) del mundo usando arquitectura SPL y orquestación avanzada.
+**SPLiQ** está construyendo la primera **AGI Cuántica** (Inteligencia General Artificial) del mundo usando arquitectura SPL y orquestación avanzada.
 
 ### ¿Qué Hace Esto Posible?
 
@@ -476,7 +476,7 @@ Seamos honestos sobre lo que hemos aprendido de décadas de investigación en IA
 - Estática: No puede adaptarse en tiempo real
 - No confiable: Alucinaciones y errores
 
-**AGI Cuántica de Spliq (LLM + SPL + Orquestación):**
+**AGI Cuántica de SPLiQ (LLM + SPL + Orquestación):**
 - General: Compone capacidades para cualquier tarea
 - Robusta: Garantías heredadas a través de composiciones
 - Adaptativa: Aprendizaje continuo a través de BUCLE/INSPECCIONAR
@@ -484,7 +484,7 @@ Seamos honestos sobre lo que hemos aprendido de décadas de investigación en IA
 
 ### La Arquitectura del Orquestador
 
-Los orquestadores de Spliq son **meta-agentes** que:
+Los orquestadores de SPLiQ son **meta-agentes** que:
 
 1. **Componen Patrones Dinámicamente**
    - Seleccionan patrones L3/L4 apropiados para la tarea
@@ -524,7 +524,7 @@ Los orquestadores de Spliq son **meta-agentes** que:
 
 Esto no es mejora incremental—es un **cambio fundamental en lo que la IA puede ser**.
 
-### El Camino de Spliq hacia la AGI
+### El Camino de SPLiQ hacia la AGI
 
 ```
 Estado Actual (2024-2025):
@@ -562,7 +562,7 @@ Largo Plazo (2027+):
 
 **Todos todavía alucinando. Todos todavía no confiables. Todos todavía estrechos.**
 
-**Spliq está construyendo la arquitectura** (mejora exponencial):
+**SPLiQ está construyendo la arquitectura** (mejora exponencial):
 - SPL: La estructura que hace a los LLMs inteligentes
 - Patrones: Verificados, componibles, con puntuación de verdad
 - Orquestadores: Composición dinámica y aprendizaje
@@ -647,7 +647,7 @@ Fundación → Capacidades → Realidades → Tecnologías → Productos → Sol
                     = Inteligencia General Verificada y Confiable
 ```
 
-**Spliq está construyendo el camino exponencial.**
+**SPLiQ está construyendo el camino exponencial.**
 
 **Así es como llegamos a la AGI real.**
 
@@ -690,7 +690,7 @@ Esto crea **inteligencia que es:**
 
 **Este es el camino hacia la AGI.**
 
-**Esto es lo que Spliq está construyendo.**
+**Esto es lo que SPLiQ está construyendo.**
 
 ---
 
@@ -710,7 +710,7 @@ Esto crea **inteligencia que es:**
 - 📕 [L5: Soluciones](../patterns/what-are-l5-solutions.md) - Aplicaciones desplegables
 
 **La Visión:**
-- 🚀 **Spliq**: Construyendo AGI Cuántica a través de orquestación SPL
+- 🚀 **SPLiQ**: Construyendo AGI Cuántica a través de orquestación SPL
 - 🌟 **El Futuro**: Inteligencia exponencial, no mejora lineal
 - 🛡️ **La Garantía**: Inteligencia verificada, segura, confiable
 
@@ -731,4 +731,4 @@ IA Real = Arquitectura + Capacidad.
 **Versión:** 2.3  
 **Última Actualización:** 25 de octubre de 2025  
 **Estado:** Explicación pública (publicable)  
-**Autor:** Equipo Spliq
+**Autor:** Equipo SPLiQ

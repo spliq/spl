@@ -1,7 +1,7 @@
 # SPL's Six Layers: Architectural Overview
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Developers, architects, and anyone learning SPL architecture

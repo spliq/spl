@@ -1,7 +1,7 @@
 # What are Solutions?
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Developers implementing SPL solutions with actual code

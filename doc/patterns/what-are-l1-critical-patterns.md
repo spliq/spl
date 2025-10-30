@@ -1,7 +1,7 @@
 # What are Critical Patterns?
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Developers, architects, and AI engineers understanding SPL's core capabilities

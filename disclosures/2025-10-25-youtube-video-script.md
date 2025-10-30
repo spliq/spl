@@ -10,7 +10,7 @@ Hi guys, it's 5 AM here but we had to publish this because it cannot wait.
 
 **Problem:** Current AI hallucinates. You can't trust it for anything important. Big companies get away with it because they only use AI for low-stakes decisions where errors don't matter. High-stakes stuff? Still needs humans.
 
-**Solution:** We built SPL—a language that enables AI to answer right and shows you how it got there. And we're about to launch Spliq, the first quantum AGI. From now on you will experience the new Real AI, which you can trust.
+**Solution:** We built SPL—a language that enables AI to answer right and shows you how it got there. And we're about to launch SPLiQ, the first quantum AGI. From now on you will experience the new Real AI, which you can trust.
 
 That's it. Now let me tell you how we got here.
 
@@ -113,19 +113,19 @@ Can LLMs lie about truth scores? Yes. That's why patterns have external validato
 
 
 
-## 7. SPLIQ - OUR COMPANY AND WHAT'S COMING
+## 7. SPLiQ - OUR COMPANY AND WHAT'S COMING
 
 
 
 
-We're Spliq. We built SPL and now we're rolling out Spliq.ai—our implementation of SPL.
+We're SPLiQ. We built SPL and now we're rolling out [spliq.ai](https://spliq.ai)—our implementation of SPL.
 
 Coming soon:
 - Chat interface where you can interact with SPL patterns
 - API access to our SPL implementation
 - Enterprise solutions for companies that need verifiable AI in production
 
-SPL is open source. Spliq is how we're bringing it to everyone. Free tier for interaction, enterprise support for companies that need it.
+SPL is open source. SPLiQ is how we're bringing it to everyone. Free tier for interaction, enterprise support for companies that need it.
 
 
 

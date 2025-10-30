@@ -1,7 +1,7 @@
 # SPL and Quantum: Why We Use Quantum Mathematics
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Engineers, researchers, and anyone asking "Why quantum?"
@@ -792,6 +792,6 @@ Quantum mechanics isn't magic—it's mathematics. SPL uses that mathematics to m
 
 ---
 
-**Author:** Spliq team  
+**Author:** SPLiQ team  
 **Version:** 2.3  
 **License:** Apache 2.0
