@@ -1,7 +1,7 @@
 # What is the Meta-Pattern?
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Developers, architects, and anyone wanting to understand SPL's foundation
