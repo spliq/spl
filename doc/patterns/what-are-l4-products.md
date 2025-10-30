@@ -1,7 +1,7 @@
 # What are Products?
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: Product managers, architects, developers defining reusable contracts

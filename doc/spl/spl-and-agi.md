@@ -1,7 +1,7 @@
 # SPL and AGI: The Path to Artificial General Intelligence
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Public explainer (publishable)  
 Audience: AI researchers, developers, business leaders, and anyone asking "When will we have AGI?"
@@ -20,7 +20,7 @@ Current AI development is stuck in a linear trap: GPT-3 → GPT-4 → GPT-5, eac
 - **Truth verification** that ensures reliability at every step
 - **Exponential growth** from pattern multiplication, not just model scaling
 
-**Spliq is building the world's first AGI** by implementing all L1C patterns on SPL foundation with minimal layers—proving that intelligence comes from architecture, not just compute.
+**SPLiQ is building the world's first AGI** by implementing all L1C patterns on SPL foundation with minimal layers—proving that intelligence comes from architecture, not just compute.
 
 **Short answer:** AGI = LLM (muscle) + SPL (brain) + L1C patterns (consciousness)
 
@@ -435,13 +435,13 @@ When all six L1C patterns work together, they create a **self-sustaining intelli
 
 ---
 
-## Spliq: Building AGI with Minimal Layers
+## SPLiQ: Building AGI with Minimal Layers
 
-### The Spliq Approach
+### The SPLiQ Approach
 
 **Thesis:** AGI doesn't require infinite complexity. It requires the **right minimal architecture**.
 
-**Spliq's strategy:**
+**SPLiQ's strategy:**
 1. Implement all six L1C cognitive patterns
 2. Build minimal L2 reality patterns (physical, digital, hybrid)
 3. Compose L3 technology patterns as needed
@@ -465,7 +465,7 @@ SPL approach (exponential):
 - Intelligence grows O(2^n)
 ```
 
-**Spliq's minimal viable AGI:**
+**SPLiQ's minimal viable AGI:**
 ```
 L0: 1 meta-pattern (foundation)
 L1: 13 critical patterns (universal capabilities)
@@ -496,7 +496,7 @@ AGI capability: Full general intelligence
 - 🔄 Real-time learning system
 - 🔄 Multi-layer validation
 
-### Why Spliq Will Succeed Where Others Fail
+### Why SPLiQ Will Succeed Where Others Fail
 
 **Others are building:**
 - Bigger LLMs (linear improvement)
@@ -504,7 +504,7 @@ AGI capability: Full general intelligence
 - Better prompting (surface optimization)
 - Agent frameworks (LLM + glue code)
 
-**Spliq is building:**
+**SPLiQ is building:**
 - **The architecture for AGI** (exponential capability)
 - **Minimal foundational patterns** (composable intelligence)
 - **Verifiable reasoning** (every step has truth scores)
@@ -513,10 +513,10 @@ AGI capability: Full general intelligence
 **The difference:**
 ```
 Others: AGI = Scale (billions of parameters, trillions of tokens)
-Spliq: AGI = Architecture (six cognitive patterns, composable foundation)
+SPLiQ: AGI = Architecture (six cognitive patterns, composable foundation)
 
 Others: More compute → better AI
-Spliq: Better structure → general intelligence
+SPLiQ: Better structure → general intelligence
 ```
 
 ---
@@ -789,7 +789,7 @@ guarantees:
    - Success metric: Every step has truth score, reasoning auditable
    - Test: 100 multi-step reasoning problems
 
-**Spliq's AGI test:**
+**SPLiQ's AGI test:**
 ```
 System must pass all six benchmarks simultaneously:
 - Novel problem solving: 80/100 (>80%)
@@ -816,7 +816,7 @@ If all six pass: System demonstrates AGI capabilities
 **Why they're wrong:**
 They don't account for **architectural breakthroughs** (like SPL).
 
-### Spliq's Realistic Timeline
+### SPLiQ's Realistic Timeline
 
 **Phase 1: Foundation (2025) - CURRENT**
 ```
@@ -874,7 +874,7 @@ Capabilities:
   - Maintains perfect safety record (guarantees enforced)
   
 The future:
-  - AGI as a service (Spliq platform)
+  - AGI as a service (SPLiQ platform)
   - Exponential capability growth
   - Every industry transformed
   - All AI verifiable and trustworthy
@@ -890,11 +890,11 @@ The future:
 
 ---
 
-## Why Spliq's AGI is Different
+## Why SPLiQ's AGI is Different
 
-### Comparison: Spliq vs. Everyone Else
+### Comparison: SPLiQ vs. Everyone Else
 
-| Aspect | OpenAI/Anthropic/Google | Spliq |
+| Aspect | OpenAI/Anthropic/Google | SPLiQ |
 |--------|------------------------|-------|
 | **Approach** | Scale (bigger models) | Architecture (better structure) |
 | **Philosophy** | AGI from emergence | AGI from design |
@@ -906,7 +906,7 @@ The future:
 | **Timeline** | "Someday, maybe never" | Concrete milestones (2025-2027) |
 | **Proof** | "Trust us, it's safe" | Truth scores + evidence chains |
 
-### What Makes Spliq's AGI Real
+### What Makes SPLiQ's AGI Real
 
 **1. Minimal Viable AGI**
 - Not trying to build omniscient AI
@@ -948,7 +948,7 @@ The future:
 
 2. **SPL provides the architecture to implement all six as composable patterns with verifiable truth scores, enabling general intelligence from minimal foundation (255 patterns, not billions).**
 
-3. **Spliq is building the world's first AGI by proving these six patterns work individually (2024-2025), integrating them (2025-2026), and deploying them (2026-2027)—with concrete benchmarks and timelines.**
+3. **SPLiQ is building the world's first AGI by proving these six patterns work individually (2024-2025), integrating them (2025-2026), and deploying them (2026-2027)—with concrete benchmarks and timelines.**
 
 ### The Honest Answer
 
@@ -958,7 +958,7 @@ Most people are asking the wrong question. They want to know when we'll have "om
 
 The right question: **When will we have AI that can learn any task, reason about any problem, and improve continuously—with verifiable safety?**
 
-**Spliq's answer: 2026-2027** for human-level general intelligence with verifiable reasoning.
+**SPLiQ's answer: 2026-2027** for human-level general intelligence with verifiable reasoning.
 
 **Why believe us?**
 
@@ -968,7 +968,7 @@ Because we're not relying on "emergent properties" or "scale solving everything.
 - ✅ Verifiable capabilities (truth scores on everything)
 - ✅ Clear milestones (2025: integration, 2026: validation, 2027: deployment)
 
-**The truth:** AGI isn't about bigger models. It's about the right architecture. SPL is that architecture. Spliq is building it.
+**The truth:** AGI isn't about bigger models. It's about the right architecture. SPL is that architecture. SPLiQ is building it.
 
 ---
 
@@ -996,12 +996,12 @@ Because we're not relying on "emergent properties" or "scale solving everything.
 
 **The Truth:**
 
-AGI isn't 50 years away. It's not 5 years away. It's happening now—with the right architecture. SPL is that architecture. Spliq is building it. You can verify every claim.
+AGI isn't 50 years away. It's not 5 years away. It's happening now—with the right architecture. SPL is that architecture. SPLiQ is building it. You can verify every claim.
 
 This is how we build AGI you can trust.
 
 ---
 
-**Author:** Spliq team  
+**Author:** SPLiQ team  
 **Version:** 2.3  
 **License:** Apache 2.0

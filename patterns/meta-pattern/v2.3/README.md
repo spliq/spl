@@ -1,7 +1,7 @@
 # SPL Meta-Pattern v2.3
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0
 
 > **The Foundation**: Defines the structure and semantics for all patterns in the Semantic Pattern Language

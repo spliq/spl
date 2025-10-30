@@ -1,7 +1,7 @@
 # The Three Pillars of SPL
 
 Version: 2.3  
-Owner: Spliq team  
+Owner: SPLiQ team  
 License: Apache 2.0  
 Status: Core architecture document (publishable)  
 Audience: All SPL developers, architects, and AI engineers
