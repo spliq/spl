@@ -38,7 +38,7 @@ guarantees:   # Culture (Ethics & Compliance)
 
 - Intelligence (contract): Greg’s 4 pillars — Goal, Return Format, Warnings, Context
 - Runtime (execution): Print AI maxims — Loop, Inspect, and Print
-- Culture (guarantees): Human alignment — success, metrics, compliance, safety
+- Culture (guarantees): Asimov's Three Laws — Human protection, human direction, system preservation
 
 These three structures are defined once at L0 (meta-pattern) and inherited everywhere.
 
