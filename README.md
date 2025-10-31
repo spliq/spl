@@ -55,7 +55,7 @@ All of this is implemented with probabilities, scores, and dependency graphs —
 
 ## Why SPL is an AGI architecture
 
-- Cognitive patterns (L2) define general capabilities: value-system, knowledge-representation, experience-acquisition, motivation, expectation, ethical-reasoning
+- Cognitive patterns (L1C) define general capabilities: value-system, knowledge-representation, experience-acquisition, motivation, expectation, ethical-reasoning
 - Cross-reality contracts let the same intelligence act in digital, physical, and hybrid environments
 - The three structures guarantee alignment and verifiability at every step
 - Generalization comes from composition, not model retraining
