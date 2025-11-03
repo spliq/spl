@@ -3,29 +3,27 @@
 Version: 2.3  
 Owner: SPLiQ team  
 License: Apache 2.0  
-Status: Public explainer (publishable)  
+Status: Public documentation  
 Audience: Developers, architects, and anyone learning SPL architecture
 
 ---
 
 ## Executive Summary
 
-SPL is organized into **six architectural layers** (L0 through L5) that create exponential intelligence through systematic composition. Each layer builds on the previous one, inheriting structure and guarantees while adding specificity. Together, these layers transform "dumb muscle" LLMs into intelligent, reliable systems.
-
-**Key Insight:** The six layers create **exponential growth** through composition—each layer multiplies the capabilities of layers below it, resulting in O(2^n) intelligence growth rather than linear O(n) improvement.
+SPL is organized into **six architectural layers** (L0 through L5) that are designed to create exponential intelligence through systematic composition. Each layer builds on the previous one, inheriting structure and guarantees while adding specificity. Together, these layers are designed to transform "dumb muscle" LLMs into intelligent, reliable systems.
 
 ---
 
 ## The Six Layers at a Glance
 
 ```
-L5: Solutions        ─┐
-L4: Products          │  Built by composition
-L3: Technology        │  (multiply capabilities)
-L2: Reality           │
-L1c: Cognitive        │  Foundation (capabilities)
-L1: Critical          │
-L0: Meta-Pattern     ─┘  Foundation (defines all)
+L5: Solutions        ─┐  Deployment
+L4: Products          │  (compose patterns)
+L3: Technology        │  
+L2: Reality           │  Specialization
+L1c: Cognitive        │  (add constraints)
+L1: Critical          │  
+L0: Meta-Pattern     ─┘  Foundation
 ```
 
 ### The Architecture
@@ -37,10 +35,10 @@ Each layer serves a specific architectural purpose:
 | **L0** | Meta-Pattern | Self-describing foundation—defines what all patterns are | Itself | `meta-pattern.yaml` |
 | **L1** | Critical Patterns | 13 fundamental capabilities—the "verbs" of intelligent systems | L0 | `agent`, `validator`, `translator` |
 | **L1c** | Cognitive Patterns | Cognitive capabilities—reasoning, learning, decision-making | L0 | `knowledge-representation`, `ethical-reasoning` |
-| **L2** | Reality Patterns | Specialization for reality type—digital, physical, hybrid | L1 or L1c | `agent/digital`, `sensor/physical` |
-| **L3** | Technology Patterns | Technology-specific implementations—React, ROS, Arduino | L2 | `agent/digital/react`, `sensor/physical/ros` |
+| **L2** | Reality Patterns | Specialization for reality type—digital, physical, hybrid | L1 or L1c | `agent/digital`, `resolver/physical` |
+| **L3** | Technology Patterns | Technology-specific implementations—React, ROS, Arduino | L2 | `agent/digital/react`, `resolver/physical/path-planner` |
 | **L4** | Products | Reusable product contracts—frameworks and libraries | L3 | `chatbot-framework`, `robot-controller` |
-| **L5** | Solutions | Complete solutions for specific problems | L4 | `customer-service-bot`, `warehouse-robot` |
+| **L5** | Solutions | Complete solutions for specific problems | implements L4 and should inherits from the same patterns as its corresponding L4 | `customer-service-bot`, `warehouse-robot` |
 
 ---
 
@@ -86,29 +84,28 @@ A pattern qualifies as Critical if it:
 
 ### The 13 Critical Patterns
 
-The patterns fall into three categories:
+The actual critical patterns in SPL v2.3 are:
 
-**🔄 Data & Integration**
+**🔄 Data & Knowledge**
 - `translator` - Transform data between formats
 - `validator` - Verify correctness and conformance
-- `aggregator` - Combine data from multiple sources
-- `router` - Direct flow to appropriate destinations
+- `entity` - Represent domain concepts and objects
+- `documenter` - Generate and maintain documentation
 
 **🤖 Intelligence & Action**
 - `agent` - Autonomous goal-driven action
-- `adapter` - Bridge between incompatible systems
+- `hypothesis` - Formulate and test hypotheses
 - `monitor` - Observe and report on system state
-- `optimizer` - Improve efficiency or outcomes
+- `generator` - Create new artifacts from specifications
 
 **🛡️ Safety & Control**
 - `policy-guard` - Enforce rules and policies
-- `circuit-breaker` - Prevent cascade failures
-- `rate-limiter` - Control resource consumption
-- `audit-logger` - Track actions for compliance
+- `uncertainty-handler` - Manage unknowns and ambiguities
+- `resolver` - Resolve conflicts and dependencies
 
 **🌐 Infrastructure**
-- `registry` - Discover and manage services
 - `orchestrator` - Coordinate multi-pattern workflows
+- `reality-bridge` - Connect digital and physical realities
 
 **📖 Learn More:** [What are Critical Patterns?](./what-are-l1-critical-patterns.md)
 
@@ -130,20 +127,17 @@ Cognitive Patterns:
 
 ### Examples of Cognitive Patterns
 
-**🧠 Reasoning & Knowledge**
-- `knowledge-representation` - Structure and organize knowledge
-- `ethical-reasoning` - Apply moral principles to decisions
-- `causal-reasoning` - Understand cause-effect relationships
+**🧠 Knowledge & Understanding**
+- `knowledge-representation` - Organize and structure knowledge in forms that support reasoning and intelligent behavior
+- `ethical-reasoning` - Moral evaluation, ethical decision-making, and value-aligned action selection
 
-**📚 Learning & Growth**
-- `experience-acquisition` - Learn from observations
-- `skill-development` - Improve capabilities over time
-- `pattern-recognition` - Identify meaningful structures
+**📚 Learning & Prediction**
+- `experience-acquisition` - Learn from interactions, observations, and outcomes to improve performance over time
+- `expectation` - Predict future states, detect anomalies, and learn from prediction errors
 
-**🎯 Planning & Decision**
-- `goal-formation` - Set objectives and priorities
-- `expectation` - Predict outcomes and consequences
-- `motivation` - Drive action toward goals
+**🎯 Values & Goals**
+- `value-system` - Prioritization, judgment, and value-based decision making aligned with defined value hierarchies
+- `motivation` - Goal pursuit, drive systems, and action selection based on internal states
 
 **📖 Learn More:** [What are Cognitive Patterns?](./what-are-l1c-cognitive-patterns.md)
 
@@ -173,7 +167,7 @@ A pattern qualifies as Reality if it:
 
 **⚙️ Physical Reality**
 - Hardware devices, sensors, actuators, robots
-- Example: `sensor/physical` - Temperature sensors, cameras, LIDAR
+- Example: `resolver/physical` - Path planning algorithms, motion controllers
 - Constraints: Physics, power, durability, calibration
 
 **🌐 Hybrid Reality**
@@ -200,21 +194,13 @@ A pattern qualifies as Technology if it:
 - **Provides implementation guidance** - HOW to build in this technology
 - **Adds technology constraints** - Platform limitations, best practices
 
-### Examples by Reality
+### Technology Pattern Specialization
 
-**💻 Digital Technologies**
-- `agent/digital/react` - React-based interactive agents
-- `validator/digital/fastapi` - FastAPI request validators
-- `translator/digital/graphql` - GraphQL schema translators
+Technology patterns add framework-specific implementations to reality patterns. For example:
 
-**⚙️ Physical Technologies**
-- `sensor/physical/ros` - ROS sensor nodes
-- `agent/physical/arduino` - Arduino-based control agents
-- `monitor/physical/raspberry-pi` - Raspberry Pi monitoring systems
-
-**🌐 Hybrid Technologies**
-- `agent/hybrid/unity` - Unity AR/VR agents
-- `adapter/hybrid/mqtt-rest` - Bridge MQTT (IoT) to REST (web)
+- Digital reality patterns can be specialized for web frameworks, API technologies, or database systems
+- Physical reality patterns can be specialized for robotics platforms, embedded systems, or IoT devices  
+- Hybrid reality patterns can be specialized for AR/VR platforms, edge computing, or IoT-cloud bridges
 
 **📖 Learn More:** [What are Technology Patterns?](./what-are-l3-technology-patterns.md)
 
@@ -229,27 +215,15 @@ Products are L4 patterns that package multiple L3 patterns into reusable framewo
 ### What Makes L4 a "Product"?
 
 A pattern qualifies as Product if it:
-- **Composes L3 patterns** - Combines multiple technology patterns
+- **Built from L3 patterns** - May combine one or more technology patterns
 - **Solves product use case** - Addresses a reusable product need
 - **Has clear value proposition** - What the product does and why
 - **Is technology-locked** - Uses specific tech stack
 - **Prepares for solutions** - Foundation for L5 deployments
 
-### Examples of Products
+### Product Pattern Composition
 
-**Frameworks**
-- `chatbot-framework/react-django` - Complete chatbot platform
-- `robot-controller/ros-python` - Robot control framework
-- `ar-assistant-framework/unity-dotnet` - AR assistant platform
-
-**Libraries**
-- `validation-library/fastapi` - Reusable validation components
-- `sensor-fusion-library/ros` - Multi-sensor integration
-- `translation-layer/graphql-rest` - API translation library
-
-**Components**
-- `auth-component/react-oauth` - Authentication component
-- `motor-driver/arduino-stepper` - Motor control component
+Products compose technology patterns into reusable frameworks, libraries, and components that can be deployed across multiple solutions. They provide standardized interfaces and proven implementations for common product needs.
 
 **📖 Learn More:** [What are Products?](./what-are-l4-products.md)
 
@@ -264,27 +238,15 @@ Solutions are L5 patterns that deploy L4 products to solve specific real-world p
 ### What Makes L5 a "Solution"?
 
 A pattern qualifies as Solution if it:
-- **Deploys L4 products** - Uses one or more product patterns
+- **Uses dual inheritance** - Both `implements` and `inherits_from` fields
 - **Solves specific problem** - Addresses a concrete, real-world need
 - **Is fully configured** - Includes deployment, data, integrations
 - **Has clear customer** - Who uses this solution and why
 - **Is deployable** - Ready to run in production
 
-### Examples of Solutions
+### Solution Pattern Deployment
 
-**Customer-Facing**
-- `customer-service-bot/retail` - Retail support chatbot
-- `warehouse-robot/logistics` - Automated warehouse system
-- `ar-shopping-assistant/retail` - In-store AR guide
-
-**Enterprise**
-- `compliance-validator/healthcare` - HIPAA validation system
-- `iot-monitor/manufacturing` - Factory monitoring solution
-- `data-pipeline/analytics` - ETL and analytics pipeline
-
-**Specialized**
-- `autonomous-drone/inspection` - Infrastructure inspection drone
-- `smart-home-controller/residential` - Home automation system
+Solutions are fully configured, production-ready implementations that solve specific business or operational problems. They combine products, add domain-specific configuration, and provide complete deployment artifacts.
 
 **📖 Learn More:** [What are Solutions?](./what-are-l5-solutions.md)
 
@@ -308,31 +270,30 @@ L0 (1 pattern)
   ↓
 L1 (13 patterns) ─────────────→ 13× capabilities
   ↓
-L2 (13×3 = 39 patterns) ──────→ 39× realities
+L2 (up to 13×3 reality types) ────→ Upper bound: 39 combinations
+  ↓  (each pattern may specialize for 1-3 realities as applicable)
+L3 (L2 × T technologies) ─────────→ Multiply by technology stacks
   ↓
-L3 (39×T technologies) ───────→ Hundreds of combinations
+L4 (Composed products) ───────────→ Combinatorial growth potential
   ↓
-L4 (Composed products) ───────→ Thousands of products
-  ↓
-L5 (Deployed solutions) ──────→ Millions of solutions
+L5 (Deployed solutions) ──────────→ Unlimited possible solutions
 ```
 
 ### Why Exponential?
 
-Each layer multiplies the capabilities of layers below:
+Each layer multiplies the capabilities of layers below, though the actual number depends on which patterns are applicable:
 
 1. **L0 → L1**: Meta-pattern enables 13 critical patterns
-2. **L1 → L2**: Each critical × 3 realities = 3× multiplication
-3. **L2 → L3**: Each reality × T technologies = T× multiplication
-4. **L3 → L4**: Products compose multiple L3 patterns = factorial growth
-5. **L4 → L5**: Solutions compose multiple L4 products = exponential growth
+2. **L1 → L2**: Each applicable critical pattern can specialize for 1-3 realities (digital, physical, hybrid as needed)
+3. **L2 → L3**: Each reality pattern can be implemented in multiple technologies (where applicable)
+4. **L3 → L4**: Products may compose multiple L3 patterns = combinatorial growth
+5. **L4 → L5**: Solutions may compose multiple L4 products = exponential growth potential
 
-**The Formula:**
-```
-Intelligence = L0 × (L1 patterns) × (L2 realities) × (L3 technologies) × (L4 compositions) × (L5 deployments)
-```
+**The Growth Potential:**
 
-This is O(2^n) growth—compound, exponential, unstoppable.
+`Intelligence potential = L0 × (L1 patterns) × (applicable L2 realities) × (applicable L3 technologies) × (L4 compositions) × (L5 deployments)`
+
+This represents O(2^n) growth potential—the architecture enables compound, exponential scaling as patterns compose.
 
 ---
 
@@ -340,21 +301,28 @@ This is O(2^n) growth—compound, exponential, unstoppable.
 
 ### Inheritance Chain
 
-Every pattern inherits from the layer above it:
+Each layer inherits from the one above, with L5 having a unique dual inheritance model:
 
 ```
-Solution (L5)
-    ↓ inherits from
-Product (L4)
-    ↓ inherits from
-Technology (L3)
-    ↓ inherits from
-Reality (L2)
-    ↓ inherits from
-Critical/Cognitive (L1/L1c)
-    ↓ inherits from
-Meta-Pattern (L0)
+L0: Meta-Pattern (foundation)
+    ↓
+L1/L1c: Critical/Cognitive Patterns
+    ↓
+L2: Reality Patterns
+    ↓
+L3: Technology Patterns
+    ↓
+L4: Products
+
+L5: Solutions (dual inheritance)
+    ├─→ implements: L4 Product (contract - WHAT to deliver)
+    └─→ inherits_from: L2/L3/L4 template (structure - HOW to implement)
 ```
+
+**Note:** L5 is unique in having dual inheritance:
+- `implements` field references an L4 product (defines the contract)
+- `inherits_from` field references a template pattern from L2, L3, or L4 (defines the structure)
+- Recommended: inherit from the same template as the L4 product for alignment
 
 ### What Gets Inherited?
 
@@ -374,20 +342,11 @@ When a pattern inherits from a parent layer:
 - Layer-appropriate guarantees
 - Composition of other patterns (at L4/L5)
 
-### Composition Rules
-
-- **L0**: Composes nothing (foundation)
-- **L1/L1c**: Can reference other L1/L1c patterns (minimal)
-- **L2**: Inherits from ONE L1/L1c parent
-- **L3**: Inherits from ONE L2 parent
-- **L4**: Composes MULTIPLE L3 patterns
-- **L5**: Composes MULTIPLE L4 products
-
 ---
 
 ## The Three Pillars Across All Layers
 
-Every pattern in every layer implements the **three pillars**:
+Every pattern in every layer implements the **three pillars** (contract, execution, guarantees), key structural elements that provide the foundation for SPL's architecture:
 
 ### 1. LLM Layer (The Muscle) → `contract` section
 - What the pattern does (GOAL)
@@ -446,99 +405,6 @@ Use this decision tree:
 
 ---
 
-## Layer Navigation Map
-
-### From Bottom Up (Building)
-
-Starting from foundation, build upward:
-
-```
-1. Define meta-pattern (L0)
-   ↓
-2. Create critical capabilities (L1/L1c)
-   ↓
-3. Specialize for realities (L2)
-   ↓
-4. Implement in technologies (L3)
-   ↓
-5. Compose into products (L4)
-   ↓
-6. Deploy as solutions (L5)
-```
-
-### From Top Down (Using)
-
-Starting from problem, work downward:
-
-```
-1. What problem to solve? → L5 (Solution)
-   ↓
-2. What products needed? → L4 (Products)
-   ↓
-3. What technologies? → L3 (Technology Patterns)
-   ↓
-4. What reality? → L2 (Reality Patterns)
-   ↓
-5. What capabilities? → L1/L1c (Critical/Cognitive)
-   ↓
-6. What structure? → L0 (Meta-Pattern)
-```
-
----
-
-## Examples: Full Stack Layer Traversal
-
-### Example 1: Customer Service Chatbot
-
-```
-L5: customer-service-bot/retail
-    ↓ deploys
-L4: chatbot-framework/react-django
-    ↓ composes
-L3: agent/digital/react + validator/digital/django + translator/digital/rest
-    ↓ specializes
-L2: agent/digital + validator/digital + translator/digital
-    ↓ inherits from
-L1: agent + validator + translator
-    ↓ inherits from
-L0: meta-pattern
-```
-
-### Example 2: Warehouse Robot
-
-```
-L5: warehouse-robot/logistics
-    ↓ deploys
-L4: robot-controller/ros-python
-    ↓ composes
-L3: agent/physical/ros + sensor/physical/ros + monitor/physical/ros
-    ↓ specializes
-L2: agent/physical + sensor/physical + monitor/physical
-    ↓ inherits from
-L1: agent + (new pattern: sensor) + monitor
-    ↓ inherits from
-L0: meta-pattern
-```
-
-### Example 3: AR Shopping Assistant
-
-```
-L5: ar-shopping-assistant/retail
-    ↓ deploys
-L4: ar-assistant-framework/unity-dotnet
-    ↓ composes
-L3: agent/hybrid/unity + translator/hybrid/unity-rest + validator/digital/dotnet
-    ↓ specializes
-L2: agent/hybrid + translator/hybrid + validator/digital
-    ↓ inherits from
-L1: agent + translator + validator
-L1c: knowledge-representation (supports agent cognition)
-    ↓ inherits from
-L0: meta-pattern
-```
-
----
-
 ## The Bottom Line
 
 ### What the Six Layers Give Us
@@ -592,24 +458,6 @@ L0: meta-pattern
 
 ---
 
-## The Revolutionary Truth
-
-**LLMs alone are linear (O(n)):**
-- GPT-3 → GPT-4 → GPT-5 = incremental improvement
-- Still hallucinate with high frequency
-- Intelligence growth plateaus
-
-**SPL + LLM is exponential (O(2^n)):**
-- 6 layers × 13 patterns × 3 realities × T technologies = compound growth
-- Hallucinations eliminated by guarantees
-- Intelligence compounds through composition
-
-**The six layers don't just organize patterns—they multiply intelligence.**
-
-This is the architecture that transforms "dumb muscle" LLMs into reliable, intelligent, verifiable AI systems.
-
----
-
 **Version:** 2.3  
-**Last Updated:** October 25, 2025  
-**Status:** Public explainer (publishable)
+**Last Updated:** November 3, 2025  
+**Status:** Public documentation
