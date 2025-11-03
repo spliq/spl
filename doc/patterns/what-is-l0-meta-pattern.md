@@ -145,46 +145,6 @@ Beyond these three architectural frameworks, the Meta-Pattern requires additiona
 
 ---
 
-## Required Fields
-
-The Meta-Pattern defines these fields as **mandatory** for all patterns:
-
-### Identity Fields
-```yaml
-id: "namespace/type/name:v2.3"    # Unique identifier
-version: 2.3                       # Semantic version
-schema: spl.meta-pattern.v2.3      # Which meta-pattern version
-kind: pattern                      # Type of pattern
-```
-
-### Information Fields
-```yaml
-info:
-  title: "Human-readable name"
-  description: "What this pattern does"
-  owners: ["team-name"]
-  tags: ["category", "domain"]
-```
-
-### Relationship Fields
-```yaml
-relations:
-  inherits_from: "parent-pattern:v2.3"   # Inheritance
-  implements: "product-contract:v2.3"     # Contract implementation
-  uses:                                   # Dependencies
-    - id: "dependency:v2.3"
-      reason: "Why we need this"
-```
-
-### Core Sections (mentioned above)
-```yaml
-contract: { ... }   # REQUIRED
-execution: { ... }  # REQUIRED
-guarantees: { ... } # REQUIRED
-```
-
----
-
 ## What the Meta-Pattern Enables
 
 ### 1. Validation
