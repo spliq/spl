@@ -3,20 +3,20 @@
 Version: 2.3  
 Owner: SPLiQ team  
 License: Apache 2.0  
-Status: Public explainer (publishable)  
+Status: Public documentation  
 Audience: Developers, architects, and anyone wanting to understand SPL's foundation
 
 ---
 
 ## Executive Summary
 
-The Meta-Pattern is the self-describing foundation of SPL—the L0 layer that defines the structure ALL patterns must follow. It's a pattern that describes what patterns are, making SPL self-consistent and verifiable from the ground up.
+The Meta-Pattern is the self-describing foundation of SPL - the L0 layer that defines the structure ALL patterns must follow. It's a pattern that describes what patterns are, making SPL self-consistent and verifiable from the ground up.
 
 ---
 
 ## Definition
 
-The **Meta-Pattern** is Layer 0 (L0) of SPL—the foundational specification that:
+The **Meta-Pattern** is Layer 0 (L0) of SPL - the foundational specification that:
 
 1. **Defines what a pattern is** - The schema all patterns must follow
 2. **Describes itself** - It's a pattern that follows its own rules (self-describing)
@@ -107,58 +107,41 @@ This self-reference means:
 
 ---
 
-## The Three Core Sections
+## Key Pattern Structures
 
-Every pattern (including the Meta-Pattern) has three required sections:
+The Meta-Pattern defines several required structures that all patterns must include. While patterns have many required fields, three key structures form the architectural framework:
 
 ### 1. Contract
 **What the pattern does**
 
-```yaml
-contract:
-  goal: "What this pattern achieves"
-  inputs:
-    - name: input_name
-      type: input_type
-      required: true/false
-  outputs:
-    - name: output_name
-      type: output_type
-      schema: { ... }
-```
+The contract defines the pattern's purpose, inputs, outputs, and constraints.
 
 **Why it matters:** Clear contracts make patterns composable and verifiable.
 
 ### 2. Execution
 **How the pattern does it**
 
-```yaml
-execution:
-  steps:
-    - "Step 1: Do this"
-    - "Step 2: Then this"
-    - "Step 3: Finally this"
-```
+The execution section defines the operational steps and workflow.
 
 **Why it matters:** Explicit execution means you can trace how results are produced.
 
 ### 3. Guarantees
 **How well it does it**
 
-```yaml
-guarantees:
-  success_criteria:
-    - "Result meets quality threshold"
-    - "No harmful side effects"
-  truth_score_requirements:
-    minimum: 0.80
-  safety:
-    - "Cannot access unauthorized data"
-  ethics:
-    - "Respects user privacy"
-```
+The guarantees section defines success criteria, metrics, and safety requirements.
 
 **Why it matters:** Guarantees enable verification and trust.
+
+### Other Required Structures
+
+Beyond these three architectural frameworks, the Meta-Pattern requires additional critical structures:
+
+- **`info`**: Metadata about the pattern (title, description, owners, tags)
+- **`relations`**: Inheritance and dependency relationships (`inherits_from`, `implements`, `uses`)
+- **`identity`**: Domain, taxonomy, and classification information
+- **`selection`**: Preferred models, tools, and constraints
+- **`inheritance`**: Rules for how patterns inherit from others
+- **`extension_points`**: Rules for extending and modifying patterns
 
 ---
 
@@ -205,59 +188,29 @@ guarantees: { ... } # REQUIRED
 ## What the Meta-Pattern Enables
 
 ### 1. Validation
+
 Every pattern can be validated against the Meta-Pattern:
 
-```bash
-# Check if a pattern is valid
-spl-validator validate my-pattern.yaml
-
-# Result:
-✓ Has required fields (id, version, schema, kind)
-✓ Contract is well-formed
-✓ Execution steps are clear
-✓ Guarantees are verifiable
-✓ Relationships are valid
-```
+You can check these parameters, and more:
+- Has required fields (id, version, schema, kind)
+- Contract is well-formed
+- Execution steps are clear
+- Guarantees are verifiable
+- Relationships are valid
 
 ### 2. Composition
-Patterns can be safely composed because they share a common structure:
 
-```yaml
-# Pattern A and Pattern B both follow meta-pattern
-# So they can be composed
-composed_pattern:
-  uses:
-    - pattern-a:v2.3
-    - pattern-b:v2.3
-```
+Patterns can be safely composed because they share a common structure defined by the Meta-Pattern. Patterns declare their dependencies using the `relations.uses` field, enabling safe composition.
 
 ### 3. Evolution
-The Meta-Pattern can evolve with clear version control:
 
-```yaml
-# Version history
-versions:
-  - version: v2.3
-    changes:
-      - "Added 'uses' relationship for dependencies"
-      - "Simplified relationship model"
-  - version: v2.2
-    changes:
-      - "Renamed 'pillars' to 'contract'"
-```
-
-### 4. Interoperability
-All SPL tools understand patterns because they all follow the Meta-Pattern:
-- Validators know what to check
-- Generators know what to create
-- Translators know how to transform
-- Orchestrators know how to execute
+The Meta-Pattern can evolve with clear version control, ensuring backward compatibility and clear migration paths between versions.
 
 ---
 
 ## The Six-Layer Architecture
 
-The Meta-Pattern is L0—the foundation for all other layers:
+The Meta-Pattern is L0, the foundation for all other layers:
 
 ```
 L0: Meta-Pattern ← YOU ARE HERE
@@ -277,91 +230,25 @@ L5: Solutions (complete implementations with code)
 
 ---
 
-## Example: The Meta-Pattern Itself
+## The Actual Meta-Pattern
 
-Here's a simplified view of the Meta-Pattern describing itself:
+To see the complete, real Meta-Pattern definition, view the source:
 
-```yaml
-version: 2.3
-schema: spl.meta-pattern.v2.3
-id: "spl/meta-pattern:v2.3"
-kind: pattern
+**[📄 Meta-Pattern v2.3](../../patterns/meta-pattern/v2.3/meta-pattern.yaml)**
 
-info:
-  title: "SPL Meta-Pattern"
-  description: "The self-describing foundation of all patterns"
-  owners: ["spl-core-team"]
-
-contract:
-  goal: "Define the structure and requirements for all SPL patterns"
-  inputs:
-    - name: pattern_definition
-      type: yaml
-      description: "A pattern to validate"
-  outputs:
-    - name: validation_result
-      type: object
-      schema:
-        valid: boolean
-        errors: array
-        truth_score: number
-
-execution:
-  steps:
-    - "Parse pattern YAML"
-    - "Check required fields exist"
-    - "Validate contract structure"
-    - "Verify execution steps"
-    - "Confirm guarantees are testable"
-    - "Calculate truth score"
-
-guarantees:
-  success_criteria:
-    - "All required fields are present"
-    - "Relationships are valid"
-    - "Contract is well-formed"
-  truth_score_requirements:
-    minimum: 1.0  # Meta-pattern must be perfect
-  safety:
-    - "Cannot modify pattern definitions"
-    - "Only validates, never executes"
-
-# The meta-pattern has version history
-versions:
-  - version: v2.3
-    changes:
-      - "BREAKING: Replaced spl_dependencies with 'uses'"
-      - "ADDED: implements field for contract implementation"
-      - "Established canonical three-relationship model"
-  - version: v2.2
-    changes:
-      - "Renamed pillars → contract"
-      - "Renamed evaluation → guarantees"
-```
+The Meta-Pattern is self-describing: it follows its own structure and validates itself using its own rules.
 
 ---
 
 ## Why Self-Description Matters
 
-### 1. No External Dependencies
-SPL doesn't need an external schema language (like JSON Schema). It describes itself.
+1. No External Dependencies: SPL doesn't need an external schema language (like JSON Schema). It describes itself.
 
-### 2. Verifiable Foundation
-You can verify the Meta-Pattern using its own rules:
+2. Verifiable Foundation: You can verify the Meta-Pattern using its own rules:
 
-```bash
-# Validate the meta-pattern against itself
-spl-validator validate patterns/meta-pattern/v2.3/meta-pattern.yaml
+3. Evolution Without Breaking: When SPL evolves, the Meta-Pattern evolves with it. Old patterns stay valid under old meta-patterns.
 
-# It will check itself and confirm it's valid
-✓ Meta-pattern is self-consistent
-```
-
-### 3. Evolution Without Breaking
-When SPL evolves, the Meta-Pattern evolves with it. Old patterns stay valid under old meta-patterns.
-
-### 4. Trust Through Transparency
-The entire system is open to inspection. No hidden rules.
+4. Trust Through Transparency: The entire system is open to inspection. No hidden rules.
 
 ---
 
@@ -432,31 +319,7 @@ Solution (L5)
     adds: [actual code implementation]
 ```
 
-**Every pattern is valid because it follows the Meta-Pattern.**
----
-
-## Architectural Placement
-
-```
-L0: Meta-Pattern ← YOU ARE HERE
-    ↓ (defines structure for all patterns)
-L1: Critical Patterns (13 universal capabilities)
-    │   L1C: Cognitive (6 patterns for AGI - classification, not layer)
-    │   L1I: Infrastructure (future classification)
-    │   L1S: Security (future classification)
-    ↓ (all L1 patterns flow through)
-L2: Reality Patterns (digital, physical, hybrid)
-    ↓
-L3: Technology Patterns (React, Django, ROS, Unity, PyTorch, etc.)
-    ↓
-L4: Products (reusable contract definitions)
-    ↓
-L5: Solutions (complete implementations)
-```
-
-**Meta-Pattern (L0)** defines the structure ALL patterns follow.  
-**L1C, L1I, L1S** are classifications within L1, not separate layers.  
-Every pattern flows L0→L1→L2→L3→L4→L5 regardless of classification.
+**Meta-Pattern** defines the structure ALL patterns follow.
 
 ---
 
@@ -470,7 +333,6 @@ Every pattern flows L0→L1→L2→L3→L4→L5 regardless of classification.
 **The Meta-Pattern is:**
 - The foundation of all SPL patterns
 - Self-describing and self-validating
-- The reason SPL patterns are composable
 - The source of truth scores and verifiability
 
 ---
@@ -481,13 +343,12 @@ Every pattern flows L0→L1→L2→L3→L4→L5 regardless of classification.
 2. Notice it follows its own rules
 3. Pick any other pattern in the registry
 4. Verify it has the required Meta-Pattern fields
-5. See how validation works: `./tools/validate.py <pattern-file>`
 
 ---
 
 ## Bottom Line
 
-**The Meta-Pattern is L0**—the self-describing foundation that makes SPL patterns:
+**The Meta-Pattern is L0** - the self-describing foundation that makes SPL patterns:
 - Composable (common structure)
 - Verifiable (clear contracts and guarantees)
 - Evolvable (version-controlled schema)
