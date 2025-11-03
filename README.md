@@ -8,33 +8,39 @@ The minimal, verifiable language to compose intelligent systems from patterns.
 
 SPL is the pattern language for quantum AI, it is the first AI language.
 
-- Verifiable: every execution returns structured output plus a truth score
+- Verifiable: designed so every execution returns structured output plus a truth score
 - Composable: patterns declare contracts and dependencies and can be safely combined
-- Layered: from L0 meta-structure to L1 critical building blocks up to complete solutions
+- Layered: from L0 meta-structure to L1 critical building blocks up to L5 complete solutions
 - Reality-agnostic: digital, physical, and hybrid systems share the same contracts
 
-That’s it. SPL is a small set of rules that makes AI systems predictable, auditable, and reusable.
+That's it. SPL is a small set of rules designed to make AI systems predictable, auditable, and reusable.
 
 ## The Three Structures (the heart of SPL)
 
-Every SPL pattern has exactly three structural sections. These map intelligence, execution, and ethics into one contract.
+SPL patterns are built around three key structures that map intelligence, execution, and ethics into one contract. While patterns include additional required fields (like metadata, relations, and identity), these three structures form the conceptual core:
 
 ```
-contract:     # Intelligence (LLM Layer)
+contract:      # Intelligence (LLM Layer)
   goal:        # What to achieve
   return:      # Exact output structure
   warnings:    # Guardrails and constraints
   context:     # Background and assumptions
 
-execution:    # Runtime (Loop / Inspect)
+execution:     # Runtime (Loop / Inspect)
   steps:       # Iterations and checks
   monitors:    # Self-inspection signals
 
-guarantees:   # Culture (Ethics & Compliance)
-  success_criteria:  # What ‘good’ means
+guarantees:    # Culture (Ethics & Compliance)
+  success_criteria:  # What 'good' means
   metrics:           # How we measure it
   compliance:        # Laws/policies to honor
 ```
+
+- Intelligence (contract): Greg's 4 pillars — Goal, Return Format, Warnings, Context
+- Runtime (execution): Print AI maxims — Loop, Inspect, and Print
+- Culture (guarantees): Asimov's Three Laws — Human protection, human direction, system preservation
+
+These three structures are defined once at L0 (meta-pattern) and inherited everywhere.
 
 - Intelligence (contract): Greg’s 4 pillars — Goal, Return Format, Warnings, Context
 - Runtime (execution): Print AI maxims — Loop, Inspect, and Print
@@ -60,7 +66,7 @@ All of this is implemented with probabilities, scores, and dependency graphs —
 - The three structures guarantee alignment and verifiability at every step
 - Generalization comes from composition, not model retraining
 
-SPL is how you specify, measure, and align intelligence universally.
+SPL provides the foundation to specify, measure, and align intelligence universally.
 
 ## What's in this repository
 
